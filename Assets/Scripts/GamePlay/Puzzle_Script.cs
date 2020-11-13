@@ -12,9 +12,17 @@ public class Puzzle_Script : MonoBehaviour
 
     private bool empty = true;
 
+    [SerializeField]
+    private Sprite [] pieces;
+
     private void Start()
     {
         empty = true;
+    }
+
+    public void SetSprite()
+    {
+        gameObject.GetComponent<SpriteRenderer>().sprite = pieces[index];
     }
 
     public bool IsPiece

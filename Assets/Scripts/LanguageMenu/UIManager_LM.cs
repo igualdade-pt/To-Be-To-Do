@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class UIManager_LM : MonoBehaviour
 {
-    [SerializeField]
-    private Image flagImage;
+    //[SerializeField]
+    //private Image flagImage;
 
     //[SerializeField]
     //private Sprite[] flags;

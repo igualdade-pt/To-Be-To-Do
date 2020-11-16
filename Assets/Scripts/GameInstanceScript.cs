@@ -8,6 +8,9 @@ public class GameInstanceScript : MonoBehaviour
     /// Save Variables Between Scene
     /// </summary>
 
+    private int indexAdventure = 0;
+
+    private int indexSuperPower = 0;
 
     private int indexLanguage = 0;
 
@@ -30,6 +33,25 @@ public class GameInstanceScript : MonoBehaviour
     {
         get { return indexLevelDifficulty; }
         set { indexLevelDifficulty = value; }
+    }
+
+
+    /// <summary>
+    /// Index of the Adventure Selected
+    /// </summary>
+    public int AdventureIndex
+    {
+        get { return indexAdventure; }
+        set { indexAdventure = value; }
+    }
+
+    /// <summary>
+    /// Index of the SuperPower Selected; 0 - Courage , 1 - Speed , 2 - Intelligence
+    /// </summary>
+    public int SuperPowerIndex
+    {
+        get { return indexSuperPower; }
+        set { indexSuperPower = value; }
     }
 
 }

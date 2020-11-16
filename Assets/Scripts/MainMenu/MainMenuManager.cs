@@ -53,7 +53,7 @@ public class MainMenuManager : MonoBehaviour
 
         uiManager_MM.UpdateLanguage(indexLanguage);
 
-        if (PlayerPrefs.HasKey("unlockedLevels")) 
+        /*if (PlayerPrefs.HasKey("unlockedLevels")) 
         {
             Debug.Log("Has Key unlockedLevels, value: " + PlayerPrefs.GetInt("unlockedLevels", 0));
             uiManager_MM.UpdadeLevelButtons(PlayerPrefs.GetInt("unlockedLevels", 0));
@@ -61,7 +61,7 @@ public class MainMenuManager : MonoBehaviour
         else
         {
             uiManager_MM.UpdadeLevelButtons(0);
-        }
+        }*/
         
     }
 
@@ -70,7 +70,7 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadScene(indexScene);
     }
 
-    public void LoadAsyncGamePlay(int indexLevel)
+    public void LoadAsyncGamePlay()
     {
         //gameInstance.LevelIndex = indexLevel;
         StartCoroutine(StartLoadAsyncScene(indexGameplayScene));
@@ -87,5 +87,20 @@ public class MainMenuManager : MonoBehaviour
             yield return null;
         }
     }
+
+    public void UpdateAdventureSelected (int adventureIndex)
+    {
+        gameInstance.AdventureIndex = adventureIndex;    
+    }
+
+    public void UpdateSuperPowerSelected(int superPowerIndex)
+    {
+        gameInstance.SuperPowerIndex = superPowerIndex;
+    }
+    public void UpdateCompanySelected(int CompanyIndex)
+    {
+        
+    }
+
 
 }

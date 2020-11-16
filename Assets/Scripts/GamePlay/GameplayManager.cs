@@ -10,11 +10,76 @@ public class GameplayManager : MonoBehaviour
     [Space]
 
     [SerializeField]
-    private int indexGameSelected = -1;
+    private int indexAdventureSelected = -1;
+
+    private GameInstanceScript gameInstance;
+
+    private int indexLanguage = 0;
+
+    private int indexDifficulty = 0;
+
+    private int indexSuperPower = 0;
+
+    // Match the Colour
+    [Header("--- Match the Colour Game --- (0)")]
+    [Space]
+
+    [SerializeField]
+    private GameObject MatchColourAdventurePool;
+
+    // Tap&Drag
+    [Header("--- Tap&Drag Game --- (2)")]
+    [Space]
+
+    [SerializeField]
+    private GameObject TapDragAdventurePool;
+
+    [SerializeField]
+    private GameObject item;
+
+    [SerializeField]
+    private GameObject itemPool;
+
+    [SerializeField]
+    private int numberOfItems;
+
+    private List<int> itemsIndexes;
+
+    private int rows;
+    private int cols;
+
+    private int randomIndex = 0;
+
+    // Puzzle
+    [Header("--- Puzzle Game --- (3)")]
+    [Space]
+
+    [SerializeField]
+    private GameObject PuzzleAdventurePool;
+
+    [SerializeField]
+    private GameObject puzzlePiece;
+
+    [SerializeField]
+    private GameObject puzzlePiecePool;
+
+    [SerializeField]
+    private int numberOfPuzzlePieces;
+
+    [SerializeField]
+    private float scaleMultiplierUnder9 = 0.4f;
+
+    [SerializeField]
+    private float scaleMultiplierOver9 = 0.3f;
+
+    private List<int> puzzlePiecesIndexes;
 
     // Memory
-    [Header("--- Memory Game ---")]
+    [Header("--- Memory Game --- (4)")]
     [Space]
+
+    [SerializeField]
+    private GameObject MemoryAdventurePool;
 
     [SerializeField]
     private GameObject card;
@@ -34,60 +99,84 @@ public class GameplayManager : MonoBehaviour
 
     private List<Cards_Script> cardsRevealed = new List<Cards_Script>(2);
 
-    // Puzzle
-    [Header("--- Puzzle Game ---")]
-    [Space]
-
-    [SerializeField]
-    private GameObject puzzlePiece;
-
-    [SerializeField]
-    private GameObject puzzlePiecePool;
-
-    [SerializeField]
-    private int numberOfPuzzlePieces;
-
-    [SerializeField]
-    private float scaleMultiplierUnder9 = 0.4f;
-
-    [SerializeField]
-    private float scaleMultiplierOver9 = 0.3f;
-
-    private List<int> puzzlePiecesIndexes;
-
-    // Tap&Drag
-    [Header("--- Tap&Drag Game ---")]
-    [Space]
-
-    [SerializeField]
-    private GameObject item;
-
-    [SerializeField]
-    private GameObject itemPool;
-
-    [SerializeField]
-    private int numberOfItems;
-
-    private List<int> itemsIndexes;
-
-    private int rows;
-    private int cols;
-
-    private int randomIndex = 0;
-
     private void Start()
     {
-        switch (indexGameSelected)
+        gameInstance = FindObjectOfType<GameInstanceScript>().GetComponent<GameInstanceScript>();
+
+        // Attribute Language      
+        indexLanguage = gameInstance.LanguageIndex;
+        switch (indexLanguage)
         {
             case 0:
-                MemoryStart();
+                Debug.Log("Main Menu, System language English: " + indexLanguage);
+
+                break;
+            case 1:
+                Debug.Log("Main Menu, System language Italian: " + indexLanguage);
+
+                break;
+            case 2:
+                Debug.Log("Main Menu, System language Portuguese: " + indexLanguage);
+
+                break;
+            case 3:
+                Debug.Log("Main Menu, System language Spanish: " + indexLanguage);
+
+                break;
+            case 4:
+                Debug.Log("Main Menu, System language Swedish: " + indexLanguage);
+                break;
+
+            default:
+                Debug.Log("Main Menu, Unavailable language, English Selected: " + indexLanguage);
+
+                break;
+        }
+
+        // Attribute Difficulty      
+        indexDifficulty = gameInstance.DifficultyLevelIndex;
+        Debug.Log("Difficulty Selected " + indexDifficulty);
+
+        // Attribute SuperPower      
+        indexSuperPower = gameInstance.SuperPowerIndex;
+        Debug.Log("SuperPower Selected " + indexSuperPower);
+
+        // Attribute Adventure      
+        indexAdventureSelected = gameInstance.AdventureIndex;
+        Debug.Log("Adventute Selected " + indexAdventureSelected);
+
+        //Set All Adventures SetActive False
+        MatchColourAdventurePool.SetActive(false);
+
+        TapDragAdventurePool.SetActive(false);
+        PuzzleAdventurePool.SetActive(false);
+        MemoryAdventurePool.SetActive(false);
+
+        // Set Only the Adventure Selected
+        switch (indexAdventureSelected)
+        {
+            case 0:
+                MatchColourStart();
+                MatchColourAdventurePool.SetActive(true);
                 break;
 
             case 1:
-                PuzzleStart();
+                //Maze
                 break;
+
             case 2:
                 TapDragStart();
+                TapDragAdventurePool.SetActive(true);
+                break;
+
+            case 3:
+                PuzzleStart();
+                PuzzleAdventurePool.SetActive(true);
+                break;
+
+            case 4:
+                MemoryStart();
+                MemoryAdventurePool.SetActive(true);
                 break;
 
             default:
@@ -96,7 +185,15 @@ public class GameplayManager : MonoBehaviour
     }
 
 
+
+    //MATCH THE COLOUR GAME
+    private void MatchColourStart()
+    {
+
+    }
+
     // ******************************************************
+
     // MEMORY GAME
     private void MemoryStart()
     {

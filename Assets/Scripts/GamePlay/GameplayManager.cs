@@ -27,6 +27,13 @@ public class GameplayManager : MonoBehaviour
     [SerializeField]
     private GameObject MatchColourAdventurePool;
 
+    // Maze the Colour
+    [Header("--- Maze Game --- (1)")]
+    [Space]
+
+    [SerializeField]
+    private GameObject mazeAdventurePool;
+
     // Tap&Drag
     [Header("--- Tap&Drag Game --- (2)")]
     [Space]
@@ -147,7 +154,7 @@ public class GameplayManager : MonoBehaviour
 
         //Set All Adventures SetActive False
         MatchColourAdventurePool.SetActive(false);
-
+        mazeAdventurePool.SetActive(false);
         TapDragAdventurePool.SetActive(false);
         PuzzleAdventurePool.SetActive(false);
         MemoryAdventurePool.SetActive(false);
@@ -161,7 +168,8 @@ public class GameplayManager : MonoBehaviour
                 break;
 
             case 1:
-                //Maze
+                MazeStart();
+                mazeAdventurePool.SetActive(true);
                 break;
 
             case 2:
@@ -188,6 +196,14 @@ public class GameplayManager : MonoBehaviour
 
     //MATCH THE COLOUR GAME
     private void MatchColourStart()
+    {
+
+    }
+
+    // ******************************************************
+
+    //MAZE GAME
+    private void MazeStart()
     {
 
     }

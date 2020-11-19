@@ -43,7 +43,7 @@ public class Paint_Script : MonoBehaviour
         {
             var ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            RaycastHit2D hit = Physics2D.Raycast(ray, ray);
+            RaycastHit2D hit = Physics2D.Linecast(ray, ray);
             Debug.DrawLine(ray, ray, Color.red);
 
             if (hit.collider != null)

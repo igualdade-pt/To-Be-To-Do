@@ -7,6 +7,9 @@ public class Drag_Script : MonoBehaviour
     [SerializeField]
     private GameObject brush;
 
+    [SerializeField]
+    private Gradient colorOfLine;
+
     private LineRenderer currentLineRenderer;
 
     private Vector2 lastPos;
@@ -14,20 +17,65 @@ public class Drag_Script : MonoBehaviour
     private void Update()
     {
         Drawing();
+
     }
 
     void Drawing()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            CreateBrush();
+            var ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            RaycastHit2D hit = Physics2D.Linecast(ray, ray);
+            Debug.DrawLine(ray, ray, Color.red);
+
+            if (hit.collider != null)
+            {
+                if (hit.collider.tag == "MazeBeginning")
+                {
+                    CreateBrush();
+                }
+            }
         }
-        else if (Input.GetMouseButton(0))
+        else if (Input.GetMouseButton(0) && currentLineRenderer != null)
         {
-            PointToMousePos();
+            var ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            RaycastHit2D hit = Physics2D.Linecast(ray, ray);
+            Debug.DrawLine(ray, ray, Color.red);
+
+            if (hit.collider != null)
+            {
+                if (hit.collider.tag == "Maze" || hit.collider.tag == "MazeBeginning")
+                {
+                    PointToMousePos();
+                }
+                else if (hit.collider.tag == "MazeEnd")
+                {
+                    // WIN
+                }          
+            }
+            else
+            {
+                //LOST
+                currentLineRenderer.gameObject.SetActive(false);
+                currentLineRenderer = null;
+            }
         }
-        else
+        else if (Input.GetMouseButtonUp(0) && currentLineRenderer != null)
         {
+            var ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            RaycastHit2D hit = Physics2D.Linecast(ray, ray);
+            Debug.DrawLine(ray, ray, Color.red);
+
+            if (hit.collider != null)
+            {
+                if (hit.collider.tag != "MazeEnd")
+                {
+                    currentLineRenderer.gameObject.SetActive(false);
+                }
+            }
             currentLineRenderer = null;
         }
     }
@@ -36,8 +84,9 @@ public class Drag_Script : MonoBehaviour
     {
         GameObject brushInstance = Instantiate(brush);
         currentLineRenderer = brushInstance.GetComponent<LineRenderer>();
+        currentLineRenderer.colorGradient = colorOfLine;
 
-        //because you gotta have 2 points to start a line renderer, 
+        //2 points to start a line renderer 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         currentLineRenderer.SetPosition(0, mousePos);
@@ -47,7 +96,7 @@ public class Drag_Script : MonoBehaviour
 
     void AddAPoint(Vector2 pointPos)
     {
-        //currentLineRenderer.positionCount++;
+        currentLineRenderer.positionCount++;
         int positionIndex = currentLineRenderer.positionCount - 1;
         currentLineRenderer.SetPosition(positionIndex, pointPos);
     }

@@ -8,6 +8,9 @@ TagManager:
   - PuzzleBoard
   - TapDragPiece
   - TapDragImage
+  - Maze
+  - MazeBeginning
+  - MazeEnd
   layers:
   - Default
   - TransparentFX

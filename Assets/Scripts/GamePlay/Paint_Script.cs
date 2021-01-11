@@ -4,6 +4,24 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
+
+
+
+/// <summary>
+///  DELETE
+/// </summary>
+
+
+
+
+
+
+
+
+
+
 public class Paint_Script : MonoBehaviour
 {
 

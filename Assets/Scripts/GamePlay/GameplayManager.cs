@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -14,11 +15,14 @@ public class GameplayManager : MonoBehaviour
 
     private GameInstanceScript gameInstance;
 
+    private UIManager_GM uiManager_GM;
+
     private int indexLanguage = 0;
 
     private int indexDifficulty = 0;
 
     private int indexSuperPower = 0;
+
 
     // Match the Colour
     [Header("--- Match the Colour Game --- (0)")]
@@ -106,39 +110,45 @@ public class GameplayManager : MonoBehaviour
 
     private List<Cards_Script> cardsRevealed = new List<Cards_Script>(2);
 
+
     private void Start()
     {
         gameInstance = FindObjectOfType<GameInstanceScript>().GetComponent<GameInstanceScript>();
+
+        uiManager_GM = FindObjectOfType<UIManager_GM>().GetComponent<UIManager_GM>();
 
         // Attribute Language      
         indexLanguage = gameInstance.LanguageIndex;
         switch (indexLanguage)
         {
             case 0:
-                Debug.Log("Main Menu, System language English: " + indexLanguage);
+                Debug.Log("Gameplay Menu, System language English: " + indexLanguage);
 
                 break;
             case 1:
-                Debug.Log("Main Menu, System language Italian: " + indexLanguage);
+                Debug.Log("Gameplay Menu, System language Italian: " + indexLanguage);
 
                 break;
             case 2:
-                Debug.Log("Main Menu, System language Portuguese: " + indexLanguage);
+                Debug.Log("Gameplay Menu, System language Portuguese: " + indexLanguage);
 
                 break;
             case 3:
-                Debug.Log("Main Menu, System language Spanish: " + indexLanguage);
+                Debug.Log("Gameplay Menu, System language Spanish: " + indexLanguage);
 
                 break;
             case 4:
-                Debug.Log("Main Menu, System language Swedish: " + indexLanguage);
+                Debug.Log("Gameplay Menu, System language Swedish: " + indexLanguage);
                 break;
 
             default:
-                Debug.Log("Main Menu, Unavailable language, English Selected: " + indexLanguage);
+                Debug.Log("Gameplay Menu, Unavailable language, English Selected: " + indexLanguage);
 
                 break;
         }
+
+        uiManager_GM.UpdateLanguage(indexLanguage);
+
 
         // Attribute Difficulty      
         indexDifficulty = gameInstance.DifficultyLevelIndex;
@@ -450,6 +460,30 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
+    // ******************************************************
 
+    public void GameEnded()
+    {
+        uiManager_GM.SetGameEndedPanel(true);
+    }
+
+    public void LoadSelectedScene(int indexSelected)
+    {
+        StartCoroutine(StartLoadAsyncScene(indexSelected));
+    }
+
+    private IEnumerator StartLoadAsyncScene(int indexLevel)
+    {
+        yield return new WaitForSeconds(3f);
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(indexLevel);
+
+        // Wait until the asynchronous scene fully loads
+        while (!asyncLoad.isDone)
+        {
+            Debug.Log(asyncLoad.progress);
+            yield return null;
+        }
+    }
 
 }

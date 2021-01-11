@@ -83,10 +83,6 @@ public class UIManager_MM : MonoBehaviour
 
     }
 
-    /*public void _LevelButtonClicked(int indexLevel)
-    {
-        mainMenuManager.LoadAsyncGamePlay();
-    }*/
 
     public void UpdateLanguage(int indexLanguage)
     {
@@ -146,4 +142,5 @@ public class UIManager_MM : MonoBehaviour
 
         mainMenuManager.LoadAsyncGamePlay();
     }
+
 }

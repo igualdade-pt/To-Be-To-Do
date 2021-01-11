@@ -8,7 +8,7 @@ public class Puzzle_Script : MonoBehaviour
     private bool isPiece;
 
     [SerializeField]
-    private int index;
+    private int index = 0;
 
     private bool empty = true;
 

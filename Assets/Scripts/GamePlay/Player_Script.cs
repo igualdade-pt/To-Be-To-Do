@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player_Script : MonoBehaviour
 {
-    [Header("Game Properties")]
+    [Header("Player Properties")]
     [Space]
     [SerializeField]
-    private int indexGameSelected;
+    private int indexAdventureSelected = -1;
 
     private GameObject pieceSelected;
 
@@ -16,28 +17,143 @@ public class Player_Script : MonoBehaviour
 
     private Vector3 initialScale;
 
-    private void Update()
+    private GameInstanceScript gameInstance;
+
+    private int indexLanguage = 0;
+
+    private int indexDifficulty = 0;
+
+    private int indexSuperPower = 0;
+
+    // **** Match Color ****
+
+    private Color colorSelected;
+
+    // **** Maze ****
+    [Header("Maze Properties, Only")]
+    [Space]
+    [SerializeField]
+    private GameObject brush;
+
+    [SerializeField]
+    private Gradient colorOfLine;
+
+    private LineRenderer currentLineRenderer;
+
+    private Vector2 lastPos;
+
+
+
+    private void Start()
     {
-        switch (indexGameSelected)
+        gameInstance = FindObjectOfType<GameInstanceScript>().GetComponent<GameInstanceScript>();
+
+        // Attribute Language      
+        indexLanguage = gameInstance.LanguageIndex;
+        Debug.Log("Player Language Selected: " + indexLanguage);
+        switch (indexLanguage)
         {
             case 0:
-                MemoryGameUpdate();
+
                 break;
 
             case 1:
-                PuzzleGameUpdate();
+
                 break;
+
             case 2:
-                TagDragGameUpdate();
+
                 break;
+
+            case 3:
+
+                break;
+
+            case 4:
+
+                break;
+
             default:
+
                 break;
         }
 
+        // Attribute Difficulty      
+        indexDifficulty = gameInstance.DifficultyLevelIndex;
+        Debug.Log("Difficulty Selected " + indexDifficulty);
+
+        // Attribute SuperPower      
+        indexSuperPower = gameInstance.SuperPowerIndex;
+        Debug.Log("SuperPower Selected " + indexSuperPower);
+
+        // Attribute Adventure      
+        indexAdventureSelected = gameInstance.AdventureIndex;
+        Debug.Log("Adventute Selected " + indexAdventureSelected);
+
+
+        switch (indexAdventureSelected)
+        {
+            case 0:
+                colorSelected = new Color(1, 1, 1, 1);
+                break;
+
+            case 1:
+                
+                break;
+
+            case 2:
+                
+                break;
+
+            case 3:
+                
+                break;
+
+            case 4:
+                
+                break;
+
+            default:
+                Debug.Log("Adventute Selected Error, index Adventure" + indexAdventureSelected);
+                break;
+        }
+        
     }
 
 
-    private void MemoryGameUpdate()
+    private void Update()
+    {
+        switch (indexAdventureSelected)
+        {
+            case 0:
+                MatchColorGameUpdate();
+                break;
+
+            case 1:
+                MazeGameUpdate();
+                break;
+
+            case 2:
+                TagDragGameUpdate();
+                break;
+
+            case 3:
+                PuzzleGameUpdate();
+                break;
+
+            case 4:
+                MemoryGameUpdate();
+                break;
+
+            default:
+                Debug.Log("Adventute Selected Error, index Adventure" + indexAdventureSelected);
+                break;
+        }
+    }
+
+
+    // ************ Match Color
+    private void MatchColorGameUpdate()
     {
         // MOBILE
         /*if (Input.touchCount > 0)
@@ -64,31 +180,23 @@ public class Player_Script : MonoBehaviour
 
             if (hit.collider != null)
             {
-                hit.collider.gameObject.GetComponent<Cards_Script>().CardClicked();
+                hit.collider.gameObject.GetComponent<SpriteRenderer>().color = colorSelected;
+                Debug.Log(hit.collider);
             }
         }
     }
 
-
-    private void PuzzleGameUpdate()
+    public void _ColorClicked(Button button)
     {
-        // MOBILE
-        /*if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
-            var ray = Camera.main.ScreenToWorldPoint(touch.position);
+        colorSelected = button.image.color;
+        Debug.Log(colorSelected);
+    }
 
-            RaycastHit2D hit = Physics2D.Raycast(ray, -Vector2.up);
 
-            if (hit.collider != null)
-            {
-                hit.collider.gameObject.GetComponent<SpriteRenderer>().color = colorSelected;
-                Debug.Log(hit.collider);
-            }
-        }*/
-
-        // PC
-        if (Input.GetMouseButtonDown(0)) // MOUSE BUTTON BEGAN
+    // ************* Maze 
+    private void MazeGameUpdate()
+    {
+        if (Input.GetMouseButtonDown(0))
         {
             var ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -96,53 +204,89 @@ public class Player_Script : MonoBehaviour
             Debug.DrawLine(ray, ray, Color.red);
 
             if (hit.collider != null)
-            {          
-                pieceSelected = null;
-                if (hit.collider.tag == "PuzzlePiece")
+            {
+                if (hit.collider.tag == "MazeBeginning")
                 {
-                    pieceSelected = hit.collider.gameObject;
-                    pieceSelected.GetComponent<Collider2D>().enabled = false;
-                    initialPos = pieceSelected.GetComponent<Transform>().position;
-                    initialScale = pieceSelected.GetComponent<Transform>().localScale;
-                    pieceSelected.GetComponent<Transform>().localScale = new Vector3(0.7f, 0.7f, 0.7f);
-                    pieceSelected.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                    CreateBrush();
                 }
             }
         }
-
-        else if (Input.GetMouseButton(0) && pieceSelected != null) // MOUSE BUTTON MOVED
-        {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            pieceSelected.GetComponent<Transform>().position = mousePos;
-        }
-
-        else if (Input.GetMouseButtonUp(0) && pieceSelected != null) // MOUSE BUTTON ENDED
+        else if (Input.GetMouseButton(0) && currentLineRenderer != null)
         {
             var ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(ray, ray);
+
+            RaycastHit2D hit = Physics2D.Linecast(ray, ray);
+            Debug.DrawLine(ray, ray, Color.red);
 
             if (hit.collider != null)
             {
-                if (hit.collider.tag == "PuzzleBoard")
+                if (hit.collider.tag == "Maze" || hit.collider.tag == "MazeBeginning")
                 {
-                    Puzzle_Script puzzleBoard = hit.collider.GetComponent<Puzzle_Script>();
-                    if (puzzleBoard.Empty && puzzleBoard.Index == pieceSelected.GetComponent<Puzzle_Script>().Index)
-                    {
-                        puzzleBoard.GetComponent<SpriteRenderer>().sprite = pieceSelected.GetComponent<SpriteRenderer>().sprite;
-                        puzzleBoard.Empty = false;
-                        pieceSelected.SetActive(false);
-                    }
+                    PointToMousePos();
+                }
+                else if (hit.collider.tag == "MazeEnd")
+                {
+                    // WIN
                 }
             }
-            pieceSelected.GetComponent<Transform>().position = initialPos;
-            pieceSelected.GetComponent<Transform>().localScale = initialScale;
-            pieceSelected.GetComponent<SpriteRenderer>().sortingOrder = 0;
-            pieceSelected.GetComponent<Collider2D>().enabled = true;
-            pieceSelected = null;
+            else
+            {
+                //LOST
+                currentLineRenderer.gameObject.SetActive(false);
+                currentLineRenderer = null;
+            }
         }
+        else if (Input.GetMouseButtonUp(0) && currentLineRenderer != null)
+        {
+            var ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            RaycastHit2D hit = Physics2D.Linecast(ray, ray);
+            Debug.DrawLine(ray, ray, Color.red);
+
+            if (hit.collider != null)
+            {
+                if (hit.collider.tag != "MazeEnd")
+                {
+                    currentLineRenderer.gameObject.SetActive(false);
+                }
+            }
+            currentLineRenderer = null;
+        }
+    }
+
+    void CreateBrush()
+    {
+        GameObject brushInstance = Instantiate(brush);
+        currentLineRenderer = brushInstance.GetComponent<LineRenderer>();
+        currentLineRenderer.colorGradient = colorOfLine;
+
+        //2 points to start a line renderer 
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        currentLineRenderer.SetPosition(0, mousePos);
+        currentLineRenderer.SetPosition(1, mousePos);
 
     }
 
+    void AddAPoint(Vector2 pointPos)
+    {
+        currentLineRenderer.positionCount++;
+        int positionIndex = currentLineRenderer.positionCount - 1;
+        currentLineRenderer.SetPosition(positionIndex, pointPos);
+    }
+
+    void PointToMousePos()
+    {
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (lastPos != mousePos)
+        {
+            AddAPoint(mousePos);
+            lastPos = mousePos;
+        }
+    }
+
+
+    // *********** Tap and Drag
     private void TagDragGameUpdate()
     {
         // MOBILE
@@ -209,6 +353,115 @@ public class Player_Script : MonoBehaviour
             pieceSelected.GetComponent<SpriteRenderer>().sortingOrder = 0;
             pieceSelected.GetComponent<Collider2D>().enabled = true;
             pieceSelected = null;
+        }
+    }
+
+
+    // ******************** Puzzle
+    private void PuzzleGameUpdate()
+    {
+        // MOBILE
+        /*if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            var ray = Camera.main.ScreenToWorldPoint(touch.position);
+
+            RaycastHit2D hit = Physics2D.Raycast(ray, -Vector2.up);
+
+            if (hit.collider != null)
+            {
+                hit.collider.gameObject.GetComponent<SpriteRenderer>().color = colorSelected;
+                Debug.Log(hit.collider);
+            }
+        }*/
+
+        // PC
+        if (Input.GetMouseButtonDown(0)) // MOUSE BUTTON BEGAN
+        {
+            var ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            RaycastHit2D hit = Physics2D.Linecast(ray, ray);
+            Debug.DrawLine(ray, ray, Color.red);
+
+            if (hit.collider != null)
+            {
+                pieceSelected = null;
+                if (hit.collider.tag == "PuzzlePiece")
+                {
+                    pieceSelected = hit.collider.gameObject;
+                    pieceSelected.GetComponent<Collider2D>().enabled = false;
+                    initialPos = pieceSelected.GetComponent<Transform>().position;
+                    initialScale = pieceSelected.GetComponent<Transform>().localScale;
+                    pieceSelected.GetComponent<Transform>().localScale = new Vector3(0.7f, 0.7f, 0.7f);
+                    pieceSelected.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                }
+            }
+        }
+
+        else if (Input.GetMouseButton(0) && pieceSelected != null) // MOUSE BUTTON MOVED
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            pieceSelected.GetComponent<Transform>().position = mousePos;
+        }
+
+        else if (Input.GetMouseButtonUp(0) && pieceSelected != null) // MOUSE BUTTON ENDED
+        {
+            var ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(ray, ray);
+
+            if (hit.collider != null)
+            {
+                if (hit.collider.tag == "PuzzleBoard")
+                {
+                    Puzzle_Script puzzleBoard = hit.collider.GetComponent<Puzzle_Script>();
+                    if (puzzleBoard.Empty && puzzleBoard.Index == pieceSelected.GetComponent<Puzzle_Script>().Index)
+                    {
+                        puzzleBoard.GetComponent<SpriteRenderer>().sprite = pieceSelected.GetComponent<SpriteRenderer>().sprite;
+                        puzzleBoard.Empty = false;
+                        pieceSelected.SetActive(false);
+                    }
+                }
+            }
+            pieceSelected.GetComponent<Transform>().position = initialPos;
+            pieceSelected.GetComponent<Transform>().localScale = initialScale;
+            pieceSelected.GetComponent<SpriteRenderer>().sortingOrder = 0;
+            pieceSelected.GetComponent<Collider2D>().enabled = true;
+            pieceSelected = null;
+        }
+
+    }
+
+
+    // ******************** Memory Game
+    private void MemoryGameUpdate()
+    {
+        // MOBILE
+        /*if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            var ray = Camera.main.ScreenToWorldPoint(touch.position);
+
+            RaycastHit2D hit = Physics2D.Raycast(ray, -Vector2.up);
+
+            if (hit.collider != null)
+            {
+                hit.collider.gameObject.GetComponent<SpriteRenderer>().color = colorSelected;
+                Debug.Log(hit.collider);
+            }
+        }*/
+
+        // PC
+        if (Input.GetMouseButtonDown(0))
+        {
+            var ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            RaycastHit2D hit = Physics2D.Linecast(ray, ray);
+            Debug.DrawLine(ray, ray, Color.red);
+
+            if (hit.collider != null)
+            {
+                hit.collider.gameObject.GetComponent<Cards_Script>().CardClicked();
+            }
         }
     }
 

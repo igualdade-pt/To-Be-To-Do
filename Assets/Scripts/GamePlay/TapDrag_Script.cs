@@ -6,7 +6,7 @@ public class TapDrag_Script : MonoBehaviour
 {
 
     [SerializeField]
-    private int index;
+    private int index = 0;
 
     [Header("Note: Correct Ones First")]
     [Space]

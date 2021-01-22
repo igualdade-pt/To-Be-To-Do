@@ -7,6 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class GameplayManager : MonoBehaviour
 {
+    [Header("Test Properties")]
+    [Space]
+    [SerializeField]
+    private bool gameplayTest = false;
+
     [Header("--- Game Properties ---")]
     [Space]
 
@@ -113,61 +118,65 @@ public class GameplayManager : MonoBehaviour
 
     private void Start()
     {
-        gameInstance = FindObjectOfType<GameInstanceScript>().GetComponent<GameInstanceScript>();
-
-        uiManager_GM = FindObjectOfType<UIManager_GM>().GetComponent<UIManager_GM>();
-
-        // Attribute Language      
-        indexLanguage = gameInstance.LanguageIndex;
-        switch (indexLanguage)
+        if (!gameplayTest)
         {
-            case 0:
-                Debug.Log("Gameplay Menu, System language English: " + indexLanguage);
+            gameInstance = FindObjectOfType<GameInstanceScript>().GetComponent<GameInstanceScript>();
 
-                break;
-            case 1:
-                Debug.Log("Gameplay Menu, System language Italian: " + indexLanguage);
+            uiManager_GM = FindObjectOfType<UIManager_GM>().GetComponent<UIManager_GM>();
 
-                break;
-            case 2:
-                Debug.Log("Gameplay Menu, System language Portuguese: " + indexLanguage);
+            // Attribute Language      
+            indexLanguage = gameInstance.LanguageIndex;
+            switch (indexLanguage)
+            {
+                case 0:
+                    Debug.Log("Gameplay Menu, System language English: " + indexLanguage);
 
-                break;
-            case 3:
-                Debug.Log("Gameplay Menu, System language Spanish: " + indexLanguage);
+                    break;
+                case 1:
+                    Debug.Log("Gameplay Menu, System language Italian: " + indexLanguage);
 
-                break;
-            case 4:
-                Debug.Log("Gameplay Menu, System language Swedish: " + indexLanguage);
-                break;
+                    break;
+                case 2:
+                    Debug.Log("Gameplay Menu, System language Portuguese: " + indexLanguage);
 
-            default:
-                Debug.Log("Gameplay Menu, Unavailable language, English Selected: " + indexLanguage);
+                    break;
+                case 3:
+                    Debug.Log("Gameplay Menu, System language Spanish: " + indexLanguage);
 
-                break;
+                    break;
+                case 4:
+                    Debug.Log("Gameplay Menu, System language Swedish: " + indexLanguage);
+                    break;
+
+                default:
+                    Debug.Log("Gameplay Menu, Unavailable language, English Selected: " + indexLanguage);
+
+                    break;
+            }
+
+            uiManager_GM.UpdateLanguage(indexLanguage);
+
+
+            // Attribute Difficulty      
+            indexDifficulty = gameInstance.DifficultyLevelIndex;
+            Debug.Log("Difficulty Selected " + indexDifficulty);
+
+            // Attribute SuperPower      
+            indexSuperPower = gameInstance.SuperPowerIndex;
+            Debug.Log("SuperPower Selected " + indexSuperPower);
+
+            // Attribute Adventure      
+            indexAdventureSelected = gameInstance.AdventureIndex;
+            Debug.Log("Adventute Selected " + indexAdventureSelected);
+
+            //Set All Adventures SetActive False
+            MatchColourAdventurePool.SetActive(false);
+            mazeAdventurePool.SetActive(false);
+            TapDragAdventurePool.SetActive(false);
+            PuzzleAdventurePool.SetActive(false);
+            MemoryAdventurePool.SetActive(false);
         }
-
-        uiManager_GM.UpdateLanguage(indexLanguage);
-
-
-        // Attribute Difficulty      
-        indexDifficulty = gameInstance.DifficultyLevelIndex;
-        Debug.Log("Difficulty Selected " + indexDifficulty);
-
-        // Attribute SuperPower      
-        indexSuperPower = gameInstance.SuperPowerIndex;
-        Debug.Log("SuperPower Selected " + indexSuperPower);
-
-        // Attribute Adventure      
-        indexAdventureSelected = gameInstance.AdventureIndex;
-        Debug.Log("Adventute Selected " + indexAdventureSelected);
-
-        //Set All Adventures SetActive False
-        MatchColourAdventurePool.SetActive(false);
-        mazeAdventurePool.SetActive(false);
-        TapDragAdventurePool.SetActive(false);
-        PuzzleAdventurePool.SetActive(false);
-        MemoryAdventurePool.SetActive(false);
+       
 
         // Set Only the Adventure Selected
         switch (indexAdventureSelected)

@@ -31,6 +31,7 @@ public class LanguageMenuManager : MonoBehaviour
         PlayerPrefs.DeleteAll();
     }
 
+
     private void Start()
     {
         // Orientation Screen

@@ -44,6 +44,7 @@ public class LanguageMenuManager : MonoBehaviour
 
         Screen.orientation = ScreenOrientation.AutoRotation;
 
+        Screen.SetResolution(1080, 1920, true);
 
         //Check if the language is saved
         if (PlayerPrefs.HasKey("languageSystem"))

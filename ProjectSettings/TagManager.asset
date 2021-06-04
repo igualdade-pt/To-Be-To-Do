@@ -3,14 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - PuzzlePiece
-  - PuzzleBoard
-  - TapDragPiece
-  - TapDragImage
-  - Maze
-  - MazeBeginning
-  - MazeEnd
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -47,13 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Background
-    uniqueID: 643925211
-    locked: 0
-  - name: Props
-    uniqueID: 1248745709
-    locked: 0
-  - name: Foreground
-    uniqueID: 2968897109
     locked: 0

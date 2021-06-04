@@ -7,6 +7,8 @@ public class UIManager_MM : MonoBehaviour
 {
     private MainMenuManager mainMenuManager;
 
+    private AudioManager audioManager;
+
     [SerializeField]
     private GameObject adventureCanvas;
 
@@ -15,6 +17,9 @@ public class UIManager_MM : MonoBehaviour
 
     [SerializeField]
     private GameObject companyCanvas;
+
+    [SerializeField]
+    private GameObject clothesCanvas;
 
     [SerializeField]
     private Button[] adventureButtons;
@@ -32,9 +37,12 @@ public class UIManager_MM : MonoBehaviour
     private void Start()
     {
         mainMenuManager = FindObjectOfType<MainMenuManager>().GetComponent<MainMenuManager>();
+        audioManager = FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
+
         adventureCanvas.SetActive(true);
         superPowerCanvas.SetActive(false);
         companyCanvas.SetActive(false);
+        clothesCanvas.SetActive(false);
 
         adventureIndexes = new List<int>(adventureSprite.Length);
         for (int i = 0; i < adventureSprite.Length; i++)
@@ -53,35 +61,52 @@ public class UIManager_MM : MonoBehaviour
         }
     }
 
-
-    public void _InformationButtonClicked()
+    public void _SettingsButtonClicked(int indexScene)
     {
-
-    }
-
-    public void _LanguageButtonClicked(int indexScene)
-    {
-        Debug.Log("Language Clicked, Index Scene: " + indexScene);
-
+        // Play Sound
+        audioManager.PlayClip(0, 0.6f);
+        // ****
         mainMenuManager.LoadScene(indexScene);
     }
 
-    public void _AgeButtonClicked(int indexScene)
+    public void _RestartButtonClicked()
     {
-        Debug.Log("Age Clicked, Index Scene: " + indexScene);
-
-        mainMenuManager.LoadScene(indexScene);
+        if (!adventureCanvas.activeSelf)
+        {
+            // Play Sound
+            audioManager.PlayClip(0, 0.6f);
+            // ****
+            adventureCanvas.SetActive(true);
+            superPowerCanvas.SetActive(false);
+            companyCanvas.SetActive(false);
+            clothesCanvas.SetActive(false);
+        }
     }
 
-    public void _BooksButtonClicked()
-    {
-
+    public void _ReturnButtonClicked()
+    {        
+        if (!adventureCanvas.activeSelf)
+        {
+            // Play Sound
+            audioManager.PlayClip(0, 0.6f);
+            // ****
+            if (companyCanvas.activeSelf)
+            {
+                adventureCanvas.SetActive(false);
+                superPowerCanvas.SetActive(true);
+                companyCanvas.SetActive(false);
+                clothesCanvas.SetActive(false);
+            }
+            else if (clothesCanvas.activeSelf)
+            {
+                adventureCanvas.SetActive(false);
+                superPowerCanvas.SetActive(false);
+                companyCanvas.SetActive(true);
+                clothesCanvas.SetActive(false);
+            }            
+        }
     }
 
-    public void _SoundButtonClicked()
-    {
-
-    }
 
 
     public void UpdateLanguage(int indexLanguage)
@@ -89,58 +114,75 @@ public class UIManager_MM : MonoBehaviour
 
     }
 
-    /*public void UpdadeLevelButtons(int unlockedLevels)
-    {
-        // Set All Buttons Lock
-        for (int i = 0; i < levelButtons.Length; i++)
-        {
-            levelButtons[i].SetActive(false);
-        }
-
-        // Set Only the Buttons Unlocked
-        int unlock = unlockedLevels + 1;
-        Mathf.Clamp(unlock, 0, levelButtons.Length);
-        Debug.Log("Unlocked Levels:  " + unlock);
-        for (int j = 0; j < unlock; j++)
-        {
-            levelButtons[j].SetActive(true);
-            if (j >= unlock-1)
-            {
-                LeanTween.scale(levelButtons[j], levelButtons[j].transform.localScale * 1.2f, 0.5f).setLoopPingPong();
-            }
-        }
-    }*/
 
     public void _AdventureButtonSelected(int buttonIndex)
     {
-        adventureCanvas.SetActive(false);
-        superPowerCanvas.SetActive(true);
-        companyCanvas.SetActive(false);
+        if (adventureCanvas.activeSelf)
+        {
+            // Play Sound
+            audioManager.PlayClip(0, 0.6f);
+            // ****
+            adventureCanvas.SetActive(false);
+            superPowerCanvas.SetActive(true);
+            companyCanvas.SetActive(false);
+            clothesCanvas.SetActive(false);
 
-        Debug.Log("Button: " + buttonIndex + ", Adventure: " + adventureButtonIndexes[buttonIndex]);
-        mainMenuManager.UpdateAdventureSelected(adventureButtonIndexes[buttonIndex]);
+            Debug.Log("Button: " + buttonIndex + ", Adventure: " + adventureButtonIndexes[buttonIndex]);
+            mainMenuManager.UpdateAdventureSelected(adventureButtonIndexes[buttonIndex]);
+        }
     }
 
     public void _SuperPowerButtonSelected(int superPowerIndex)
     {
-        adventureCanvas.SetActive(false);
-        superPowerCanvas.SetActive(false);
-        companyCanvas.SetActive(true);
+        if (superPowerCanvas.activeSelf)
+        {
+            // Play Sound
+            audioManager.PlayClip(0, 0.6f);
+            // ****
+            adventureCanvas.SetActive(false);
+            superPowerCanvas.SetActive(false);
+            companyCanvas.SetActive(true);
+            clothesCanvas.SetActive(false);
 
-        Debug.Log("SuperPower:" + superPowerIndex);
-        mainMenuManager.UpdateSuperPowerSelected(superPowerIndex);
+            Debug.Log("SuperPower:" + superPowerIndex);
+            mainMenuManager.UpdateSuperPowerSelected(superPowerIndex);
+        }
     }
 
     public void _CompanyButtonSelected(int CompanyIndex)
     {
-        adventureCanvas.SetActive(false);
-        superPowerCanvas.SetActive(false);
-        companyCanvas.SetActive(false);
+        if (companyCanvas.activeSelf)
+        {
+            // Play Sound
+            audioManager.PlayClip(0, 0.6f);
+            // ****
+            adventureCanvas.SetActive(false);
+            superPowerCanvas.SetActive(false);
+            companyCanvas.SetActive(false);
+            clothesCanvas.SetActive(true);
 
-        mainMenuManager.UpdateCompanySelected(CompanyIndex);
-        Debug.Log("Company:" + CompanyIndex);
+            mainMenuManager.UpdateCompanySelected(CompanyIndex);
+            Debug.Log("Company:" + CompanyIndex);
+        }
+    }
 
-        mainMenuManager.LoadAsyncGamePlay();
+    public void _ClothesButtonSelected(int ClothesIndex)
+    {
+        if (clothesCanvas.activeSelf)
+        {
+            // Play Sound
+            audioManager.PlayClip(0, 0.6f);
+            // ****
+            adventureCanvas.SetActive(false);
+            superPowerCanvas.SetActive(false);
+            companyCanvas.SetActive(false);
+            clothesCanvas.SetActive(false);
+
+            //mainMenuManager.UpdateCompanySelected(CompanyIndex);
+            Debug.Log("Clothes:" + ClothesIndex);
+
+            mainMenuManager.LoadAsyncGamePlay();
+        }
     }
 
 }

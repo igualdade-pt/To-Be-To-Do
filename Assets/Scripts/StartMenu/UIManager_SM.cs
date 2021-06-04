@@ -25,6 +25,12 @@ public class UIManager_SM : MonoBehaviour
     [SerializeField]
     private GameObject[] buttonBookSelectedPanel;
 
+    [SerializeField]
+    private string[] partnersLinks;
+
+    [SerializeField]
+    private string[] gamesLink;
+
 
     [Header("Panels")]
     [Space]
@@ -48,6 +54,36 @@ public class UIManager_SM : MonoBehaviour
 
     private bool isSoundActive = true;
 
+
+    [Header("Book")]
+    [Space]
+    [SerializeField]
+    private RectTransform[] tPagesBookTV;
+
+    [SerializeField]
+    private RectTransform[] tPaintsExpert;
+
+    private RectTransform[][] tPages = new RectTransform[4][];
+
+    [SerializeField]
+    private float[] xPages;
+
+    [SerializeField]
+    private LeanTweenType easeType;
+
+    [SerializeField]
+    private AnimationCurve curve;
+
+    private float previousTime = 0;
+
+    private int currentIndexPage;
+    private bool canChange;
+    private Vector2 lastDragPosition;
+    private bool positiveDrag;
+    private bool canDrag;
+
+    private int bookSelected;
+
     private void Awake()
     {
         informationPanel.SetActive(false);
@@ -64,14 +100,19 @@ public class UIManager_SM : MonoBehaviour
     private void Start()
     {
         startMenuManager = FindObjectOfType<StartMenuManager>().GetComponent<StartMenuManager>();
-        //audioManager = FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
+        audioManager = FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
         isSoundActive = true;
+        canChange = true;
+        tPages[0] = tPagesBookTV;
+        tPages[1] = tPaintsExpert;
     }
 
     public void _StartButtonClicked(int indexScene)
     {
         Debug.Log("Start Clicked, Index Scene: " + indexScene);
-
+        // Play Sound
+        audioManager.PlayClip(0, 0.6f);
+        // ****
         startMenuManager.LoadAsyncScene(indexScene);
     }
 
@@ -79,7 +120,39 @@ public class UIManager_SM : MonoBehaviour
     {
         if (!informationPanel.activeSelf)
         {
+            // Play Sound
+            audioManager.PlayClip(0, 0.6f);
+            // ****
             informationPanel.SetActive(true);
+        }
+    }
+
+    /*
+        Colourful Children - https://colourfulchildren.eu/
+
+        Erasmus+ - https://ec.europa.eu/programmes/erasmus-plus/about_en 
+
+        Associação igualdade.pt - https://igualdade.pt
+
+        CIEG-ISCSP-ULisboa - http://cieg.iscsp.ulisboa.pt/ 
+
+         Härryda - https://www.harryda.se/
+
+        Murcia - https://www.murcia.es         
+
+        Ravenna - https://www.comune.ra.it/ 
+
+        Torres Vedras - http://cm-tvedras.pt/ 
+     */
+
+    public void _PartnersButtonClicked(int index)
+    {
+        if (informationPanel.activeSelf)
+        {
+            // Play Sound
+            audioManager.PlayClip(0, 0.6f);
+            // ****
+            Application.OpenURL(partnersLinks[index]);
         }
     }
 
@@ -87,6 +160,9 @@ public class UIManager_SM : MonoBehaviour
     {
         if (informationPanel.activeSelf)
         {
+            // Play Sound
+            audioManager.PlayClip(0, 0.6f);
+            // ****
             informationPanel.SetActive(false);
         }
     }
@@ -94,14 +170,18 @@ public class UIManager_SM : MonoBehaviour
     public void _LanguageButtonClicked(int indexScene)
     {
         Debug.Log("Language Clicked, Index Scene: " + indexScene);
-
+        // Play Sound
+        audioManager.PlayClip(0, 0.6f);
+        // ****
         startMenuManager.LoadScene(indexScene);
     }
 
     public void _AgeButtonClicked(int indexScene)
     {
         Debug.Log("Age Clicked, Index Scene: " + indexScene);
-
+        // Play Sound
+        audioManager.PlayClip(0, 0.6f);
+        // ****
         startMenuManager.LoadScene(indexScene);
     }
 
@@ -109,6 +189,9 @@ public class UIManager_SM : MonoBehaviour
     {
         if (!booksPanel.activeSelf)
         {
+            // Play Sound
+            audioManager.PlayClip(0, 0.6f);
+            // ****
             allBooksPanel.SetActive(false);
             booksPanel.SetActive(true);
             buttonsBooksPanel.SetActive(true);
@@ -117,18 +200,38 @@ public class UIManager_SM : MonoBehaviour
 
     public void _CloseBooksButtonClicked()
     {
-        if (booksPanel.activeSelf)
+        if (booksPanel.activeSelf && !allBooksPanel.activeSelf)
         {
+            // Play Sound
+            audioManager.PlayClip(0, 0.6f);
+            // ****
             booksPanel.SetActive(false);
         }
+        else if (allBooksPanel.activeSelf)
+        {
+            // Play Sound
+            audioManager.PlayClip(0, 0.6f);
+            // ****
+            allBooksPanel.SetActive(false);
+            buttonBookSelectedPanel[indexBookSelected].SetActive(false);
+            buttonsBooksPanel.SetActive(false);
+            buttonsBooksPanel.SetActive(true);
+            //buttonCloseBooksPanel.SetActive(true);
+        }
+
     }
 
     public void _BookButtonSelectedClicked(int indexBook)
     {
         if (booksPanel.activeSelf)
         {
+            // Play Sound
+            audioManager.PlayClip(0, 0.6f);
+            // ****
+            bookSelected = indexBook;
+            InitUpdatePages();
             buttonsBooksPanel.SetActive(false);
-            buttonCloseBooksPanel.SetActive(false);
+            //buttonCloseBooksPanel.SetActive(false);
 
             for (int i = 0; i < buttonBookSelectedPanel.Length; i++)
             {
@@ -146,6 +249,9 @@ public class UIManager_SM : MonoBehaviour
     {
         if (booksPanel.activeSelf)
         {
+            // Play Sound
+            audioManager.PlayClip(0, 0.6f);
+            // ****
             allBooksPanel.SetActive(false);
             buttonBookSelectedPanel[indexBookSelected].SetActive(false);
             buttonsBooksPanel.SetActive(false);
@@ -159,7 +265,20 @@ public class UIManager_SM : MonoBehaviour
     {
         if (!gamePanel.activeSelf)
         {
+            // Play Sound
+            audioManager.PlayClip(0, 0.6f);
+            // ****
             gamePanel.SetActive(true);
+        }
+    }
+    public void _GameButtonClicked(int index)
+    {
+        if (gamePanel.activeSelf)
+        {
+            // Play Sound
+            audioManager.PlayClip(0, 0.6f);
+            // ****
+            Application.OpenURL("market://details?id=" + gamesLink[index]);
         }
     }
 
@@ -167,6 +286,9 @@ public class UIManager_SM : MonoBehaviour
     {
         if (gamePanel.activeSelf)
         {
+            // Play Sound
+            audioManager.PlayClip(0, 0.6f);
+            // ****
             gamePanel.SetActive(false);
         }
     }
@@ -177,7 +299,7 @@ public class UIManager_SM : MonoBehaviour
         {
             //soundButton.image.sprite = spriteOffOnSound[0];
             Debug.Log("sound is OFF, value:" + isSoundActive);
-            //audioManager.SetVolume(isSoundActive);
+            audioManager.SetMasterVolume(isSoundActive);
             isSoundActive = false;
             soundImage.sprite = spritesOnOffSound[1];
         }
@@ -185,7 +307,7 @@ public class UIManager_SM : MonoBehaviour
         {
             //soundButton.image.sprite = spriteOffOnSound[1];
             Debug.Log("sound is ON, value:" + isSoundActive);
-            //audioManager.SetVolume(isSoundActive);
+            audioManager.SetMasterVolume(isSoundActive);
             isSoundActive = true;
             soundImage.sprite = spritesOnOffSound[0];
         }
@@ -194,6 +316,271 @@ public class UIManager_SM : MonoBehaviour
     public void UpdateLanguage(int indexLanguage)
     {
 
+    }
+
+    private void InitUpdatePages()
+    {
+        currentIndexPage = 0;
+        // Change Paint
+        int t = 0;
+
+        for (int i = 0; i < tPages[bookSelected].Length; i++)
+        {
+            if (0 == i)
+            {
+                tPages[bookSelected][i].anchoredPosition = new Vector2(xPages[2], tPages[bookSelected][i].anchoredPosition.y);
+            }
+            else if (1 == i)
+            {
+                tPages[bookSelected][i].anchoredPosition = new Vector2(xPages[3], tPages[bookSelected][i].anchoredPosition.y);
+            }
+            else
+            {
+                tPages[bookSelected][i].anchoredPosition = new Vector2(xPages[4], tPages[bookSelected][i].anchoredPosition.y);
+            }
+
+        }
+
+        previousTime = Time.time;
+    }
+
+
+    public void UpdatePage(int indexPage)
+    {
+        int t = indexPage;
+
+        int first = t + 1;
+        int second = t + 2;
+        int third = t - 1;
+        int fourth = t - 2;
+
+        for (int i = 0; i < tPages[bookSelected].Length; i++)
+        {
+            if (t == i)
+            {
+                float time = Time.time - previousTime - 0.1f;
+                time = Mathf.Clamp(time, 0f, 0.5f);
+                if (time < 0.18)
+                {
+                    time = 0;
+                }
+                if (easeType == LeanTweenType.animationCurve)
+                {
+                    LeanTween.moveX(tPages[bookSelected][i], xPages[2], time).setEase(curve).setOnComplete(CanChangePage);
+                }
+                else
+                {
+                    LeanTween.moveX(tPages[bookSelected][i], xPages[2], time).setEase(easeType).setOnComplete(CanChangePage);
+                }
+            }
+            else if (first == i)
+            {
+                float time = Time.time - previousTime - 0.1f;
+                time = Mathf.Clamp(time, 0f, 0.5f);
+                if (time < 0.18)
+                {
+                    time = 0;
+                }
+                if (easeType == LeanTweenType.animationCurve)
+                {
+                    LeanTween.moveX(tPages[bookSelected][i], xPages[3], time).setEase(curve).setOnComplete(CanChangePage);
+                }
+                else
+                {
+                    LeanTween.moveX(tPages[bookSelected][i], xPages[3], time).setEase(easeType).setOnComplete(CanChangePage);
+                }
+            }
+            else if (second == i)
+            {
+                float time = Time.time - previousTime - 0.1f;
+                time = Mathf.Clamp(time, 0f, 0.5f);
+                if (time < 0.18)
+                {
+                    time = 0;
+                }
+                if (easeType == LeanTweenType.animationCurve)
+                {
+                    LeanTween.moveX(tPages[bookSelected][i], xPages[4], time).setEase(curve).setOnComplete(CanChangePage);
+                }
+                else
+                {
+                    LeanTween.moveX(tPages[bookSelected][i], xPages[4], time).setEase(easeType).setOnComplete(CanChangePage);
+                }
+            }
+            else if (third == i)
+            {
+                float time = Time.time - previousTime - 0.1f;
+                time = Mathf.Clamp(time, 0f, 0.5f);
+                if (time < 0.18)
+                {
+                    time = 0;
+                }
+                if (easeType == LeanTweenType.animationCurve)
+                {
+                    LeanTween.moveX(tPages[bookSelected][i], xPages[1], time).setEase(curve).setOnComplete(CanChangePage);
+                }
+                else
+                {
+                    LeanTween.moveX(tPages[bookSelected][i], xPages[1], time).setEase(easeType).setOnComplete(CanChangePage);
+                }
+            }
+            else if (fourth == i)
+            {
+                float time = Time.time - previousTime - 0.1f;
+                time = Mathf.Clamp(time, 0f, 0.5f);
+                if (time < 0.18)
+                {
+                    time = 0;
+                }
+                if (easeType == LeanTweenType.animationCurve)
+                {
+                    LeanTween.moveX(tPages[bookSelected][i], xPages[0], time).setEase(curve).setOnComplete(CanChangePage);
+                }
+                else
+                {
+                    LeanTween.moveX(tPages[bookSelected][i], xPages[0], time).setEase(easeType).setOnComplete(CanChangePage);
+                }
+            }
+            else
+            {
+                LeanTween.cancel(tPages[bookSelected][i]);
+                tPages[bookSelected][i].anchoredPosition = new Vector2(xPages[4], tPages[bookSelected][i].anchoredPosition.y);
+            }
+        }
+
+
+
+    }
+
+    private void CanChangePage()
+    {
+        canChange = true;
+    }
+
+    public void _RightButtonClick()
+    {
+        if (canChange)
+        {
+            canChange = false;
+            if (currentIndexPage < tPages[bookSelected].Length - 1)
+            {
+                currentIndexPage++;
+                UpdatePage(currentIndexPage);
+                // Play Sound
+                audioManager.PlayClip(0, 0.4f);
+                // ****
+                audioManager.PlayClip(4, 0.6f);
+                // ****
+            }
+            else
+            {
+                currentIndexPage = tPages[bookSelected].Length - 1;
+                canChange = true;
+            }
+
+        }
+
+    }
+
+    public void _LeftButtonClick()
+    {
+        if (canChange)
+        {
+            canChange = false;
+            if (currentIndexPage > 0)
+            {
+                currentIndexPage--;
+                UpdatePage(currentIndexPage);
+                // Play Sound
+                audioManager.PlayClip(0, 0.4f);
+                // ****
+                audioManager.PlayClip(4, 0.6f);
+                // ****
+            }
+            else
+            {
+                currentIndexPage = 0;
+                canChange = true;
+            }
+
+        }
+    }
+
+
+    public void _BeginDrag()
+    {
+        lastDragPosition = Input.mousePosition;
+        //lastDragPosition = Input.GetTouch(0).position;
+    }
+
+    public void _Drag()
+    {
+        canDrag = false;
+
+        if (Input.mousePosition.x != lastDragPosition.x)
+        {
+            canDrag = true;
+            positiveDrag = Input.mousePosition.x > lastDragPosition.x;
+        }
+
+
+        if (canDrag)
+        {
+            if (!positiveDrag)
+            {
+                if (canChange)
+                {
+                    canChange = false;
+                    if (currentIndexPage < tPages[bookSelected].Length - 1)
+                    {
+                        currentIndexPage++;
+                        UpdatePage(currentIndexPage);
+                        // Play Sound
+                        audioManager.PlayClip(1, 0.4f);
+                        // ****
+                        audioManager.PlayClip(4, 0.6f);
+                        // ****
+                    }
+                    else
+                    {
+                        currentIndexPage = tPages[bookSelected].Length - 1;
+                        canChange = true;
+                    }
+                }
+            }
+            else
+            {
+                if (canChange)
+                {
+                    canChange = false;
+                    if (currentIndexPage > 0)
+                    {
+                        currentIndexPage--;
+                        UpdatePage(currentIndexPage);
+                        // Play Sound
+                        audioManager.PlayClip(1, 0.4f);
+                        // ****
+                        audioManager.PlayClip(4, 0.6f);
+                        // ****
+                    }
+                    else
+                    {
+                        currentIndexPage = 0;
+                        canChange = true;
+                    }
+
+                }
+            }
+        }
+
+
+        lastDragPosition = Input.mousePosition;
+        //lastDragPosition = Input.GetTouch(0).position;
+    }
+
+    public void _EndDrag()
+    {
+        canDrag = true;
     }
 
 }

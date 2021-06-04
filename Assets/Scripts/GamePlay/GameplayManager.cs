@@ -12,6 +12,10 @@ public class GameplayManager : MonoBehaviour
     [SerializeField]
     private bool gameplayTest = false;
 
+    [SerializeField]
+    private int indexDifficultyTEST;
+
+
     [Header("--- Game Properties ---")]
     [Space]
 
@@ -21,6 +25,9 @@ public class GameplayManager : MonoBehaviour
     private GameInstanceScript gameInstance;
 
     private UIManager_GM uiManager_GM;
+
+    private AudioManager audioManager;
+    private MusicManagerScript musicManager;
 
     private int indexLanguage = 0;
 
@@ -176,14 +183,21 @@ public class GameplayManager : MonoBehaviour
             PuzzleAdventurePool.SetActive(false);
             MemoryAdventurePool.SetActive(false);
         }
-       
+        else
+        {
+            indexDifficulty = indexDifficultyTEST;
+        }
+
+        uiManager_GM = FindObjectOfType<UIManager_GM>().GetComponent<UIManager_GM>();
+        audioManager = FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
 
         // Set Only the Adventure Selected
         switch (indexAdventureSelected)
         {
             case 0:
-                MatchColourStart();
                 MatchColourAdventurePool.SetActive(true);
+                MatchColourStart();
+                uiManager_GM.SetColourPanel(true);
                 break;
 
             case 1:
@@ -209,6 +223,10 @@ public class GameplayManager : MonoBehaviour
             default:
                 break;
         }
+
+        musicManager = FindObjectOfType<MusicManagerScript>().GetComponent<MusicManagerScript>();
+
+        musicManager.LowMusic();
     }
 
 

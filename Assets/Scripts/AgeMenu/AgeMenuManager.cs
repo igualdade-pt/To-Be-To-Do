@@ -86,7 +86,7 @@ public class AgeMenuManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(indexSceneToLoad - 1); // Remove -1
+            SceneManager.LoadScene(indexSceneToLoad); // Remove -1
         }
     }
 }

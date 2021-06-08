@@ -50,6 +50,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9e02277223e235e4e96fbb2357cfa503, type: 3}
   - {fileID: 8300000, guid: be01fb91daeb0614b901a2933312d828, type: 3}
   - {fileID: 8300000, guid: 2b28f77d5c14cfc41a360dcb1a45da1f, type: 3}
+  - {fileID: 8300000, guid: 36c82e50c37d69846ac35cc3f5e347fc, type: 3}
+  - {fileID: 8300000, guid: 6133ba6dd5284824b853017f3deacd16, type: 3}
+  - {fileID: 8300000, guid: 040bbb1a464b3634fb15193c2a778226, type: 3}
+  - {fileID: 8300000, guid: c22a62a0772af27479e5fc723ada8435, type: 3}
+  - {fileID: 8300000, guid: 807338ae5c406614c9a93584002e285c, type: 3}
+  - {fileID: 8300000, guid: d7437f59fffcc9745a4d60ac0a0172b7, type: 3}
   - {fileID: 8300000, guid: e4bf77f115fd86b4b84041d7d5b3a84a, type: 3}
   buttonVolume: 0.2
 --- !u!82 &7318535270373748891

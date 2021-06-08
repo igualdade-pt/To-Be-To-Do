@@ -469,7 +469,7 @@ public class UIManager_SM : MonoBehaviour
                 // Play Sound
                 audioManager.PlayClip(0, 0.4f);
                 // ****
-                audioManager.PlayClip(4, 0.6f);
+                audioManager.PlayClip(10, 0.8f);
                 // ****
             }
             else
@@ -494,7 +494,7 @@ public class UIManager_SM : MonoBehaviour
                 // Play Sound
                 audioManager.PlayClip(0, 0.4f);
                 // ****
-                audioManager.PlayClip(4, 0.6f);
+                audioManager.PlayClip(10, 0.8f);
                 // ****
             }
             else
@@ -538,7 +538,7 @@ public class UIManager_SM : MonoBehaviour
                         // Play Sound
                         audioManager.PlayClip(1, 0.4f);
                         // ****
-                        audioManager.PlayClip(4, 0.6f);
+                        audioManager.PlayClip(10, 0.8f);
                         // ****
                     }
                     else
@@ -560,7 +560,7 @@ public class UIManager_SM : MonoBehaviour
                         // Play Sound
                         audioManager.PlayClip(1, 0.4f);
                         // ****
-                        audioManager.PlayClip(4, 0.6f);
+                        audioManager.PlayClip(10, 0.8f);
                         // ****
                     }
                     else

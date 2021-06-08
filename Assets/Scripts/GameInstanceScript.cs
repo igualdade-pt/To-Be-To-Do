@@ -12,11 +12,16 @@ public class GameInstanceScript : MonoBehaviour
 
     private int indexSuperPower = 0;
 
+    private int indexCompanion = 0;
+
+    private int indexClothes = 0;
+
     private int indexLanguage = -1;
 
     private int indexLevelDifficulty = 0;
 
     private bool cameFromStartMenu = false;
+
 
     /// <summary>
     /// Index of the chosen language
@@ -54,6 +59,25 @@ public class GameInstanceScript : MonoBehaviour
     {
         get { return indexSuperPower; }
         set { indexSuperPower = value; }
+    }
+
+
+    /// <summary>
+    /// Index of the Companion Selected; 0 - Hero Female , 1 - Hero Male , 2 - Dog , 3 - Alone
+    /// </summary>
+    public int CompanionIndex
+    {
+        get { return indexCompanion; }
+        set { indexCompanion = value; }
+    }
+
+    /// <summary>
+    /// Index of the Clothes
+    /// </summary>
+    public int ClothesIndex
+    {
+        get { return indexClothes; }
+        set { indexClothes = value; }
     }
 
     /// <summary>

@@ -29,6 +29,8 @@ public class GameplayManager : MonoBehaviour
     private AudioManager audioManager;
     private MusicManagerScript musicManager;
 
+    private Player_Script playerScript;
+
     private int indexLanguage = 0;
 
     private int indexDifficulty = 0;
@@ -41,7 +43,9 @@ public class GameplayManager : MonoBehaviour
     [Space]
 
     [SerializeField]
-    private GameObject MatchColourAdventurePool;
+    private GameObject matchColourAdventurePool;
+
+    // ***************************************************************************************** //
 
     // Maze the Colour
     [Header("--- Maze Game --- (1)")]
@@ -50,12 +54,34 @@ public class GameplayManager : MonoBehaviour
     [SerializeField]
     private GameObject mazeAdventurePool;
 
+    [SerializeField]
+    private GameObject[] mazeBasic;
+
+    [SerializeField]
+    private GameObject[] mazeExpert;
+
+    [Header("Element 0 - Basic, Element 1 - Expert")]
+    [Space]
+
+    [Header("Element 0 , 1 - Basic (min , sec), Element 2 ,3 - Expert (min , sec)")]
+    [SerializeField]
+    private int[] timeMazeByDifficulty = new int[4] { 1, 30,
+                                                    0, 59 };
+
+    [Header("Element 0 - Basic, Element 1 - Expert")]
+    [SerializeField]
+    private int[] numberOfMazeAttemptsByDifficulty = new int[2] { 4, 6 };
+
+    private int numberOfMazeAttempts;
+
+    // ***************************************************************************************** //
+
     // Tap&Drag
     [Header("--- Tap&Drag Game --- (2)")]
     [Space]
 
     [SerializeField]
-    private GameObject TapDragAdventurePool;
+    private GameObject tapDragAdventurePool;
 
     [SerializeField]
     private GameObject item;
@@ -64,21 +90,44 @@ public class GameplayManager : MonoBehaviour
     private GameObject itemPool;
 
     [SerializeField]
+    private int numberOfAllItems;
+
+    [Header("Element 0 - Basic, Element 1 - Expert")]
+    [Space]
+
+    [Header("Difficulty: ")]
+    [SerializeField]
+    private int[] numberOfItemsByDifficulty = new int[2] { 6, 8 };
+
+    [Header("Element 0 - Basic, Element 1 - Expert")]
+    [SerializeField]
+    private int[] numberOfRightItemsByDifficulty = new int[2] { 4, 4 };
+
+    [Header("Element 0 , 1 - Basic (min , sec), Element 2 ,3 - Expert (min , sec)")]
+    [SerializeField]
+    private int[] timeTapDragByDifficulty = new int[4] { 1, 30,
+                                                    0, 59 };
+
+    [Header("Element 0 - Basic, Element 1 - Expert")]
+    [SerializeField]
+    private int[] numberOfTapDragAttemptsByDifficulty = new int[2] { 4, 3 };
+
     private int numberOfItems;
+
+    private int numberOfRightItems;
+
+    private int numberOfTapDragAttempts;
 
     private List<int> itemsIndexes;
 
-    private int rows;
-    private int cols;
-
-    private int randomIndex = 0;
+    // ***************************************************************************************** //
 
     // Puzzle
     [Header("--- Puzzle Game --- (3)")]
     [Space]
 
     [SerializeField]
-    private GameObject PuzzleAdventurePool;
+    private GameObject puzzleAdventurePool;
 
     [SerializeField]
     private GameObject puzzlePiece;
@@ -87,22 +136,43 @@ public class GameplayManager : MonoBehaviour
     private GameObject puzzlePiecePool;
 
     [SerializeField]
-    private int numberOfPuzzlePieces;
-
-    [SerializeField]
     private float scaleMultiplierUnder9 = 0.4f;
 
     [SerializeField]
     private float scaleMultiplierOver9 = 0.3f;
 
+    [Header("Element 0 - Basic, Element 1 - Expert")]
+    [Space]
+
+    [Header("Difficulty: ")]
+    [SerializeField]
+    private int[] numberOfPiecesByDifficulty = new int[2] { 6, 6 };
+
+    [Header("Element 0 , 1 - Basic (min , sec), Element 2 ,3 - Expert (min , sec)")]
+    [SerializeField]
+    private int[] timePuzzleByDifficulty = new int[4] { 1, 30,
+                                                    0, 59 };
+
+    [Header("Element 0 - Basic, Element 1 - Expert")]
+    [SerializeField]
+    private int[] numberOfPuzzleAttemptsByDifficulty = new int[2] { 4, 3 };
+
     private List<int> puzzlePiecesIndexes;
+
+    private int numberOfPuzzlePieces;
+
+    private int numberOfPuzzlePiecesDone;
+
+    private int numberOfPuzzleAttempts;
+
+    // ***************************************************************************************** //
 
     // Memory
     [Header("--- Memory Game --- (4)")]
     [Space]
 
     [SerializeField]
-    private GameObject MemoryAdventurePool;
+    private GameObject memoryAdventurePool;
 
     [SerializeField]
     private GameObject card;
@@ -111,10 +181,34 @@ public class GameplayManager : MonoBehaviour
     private GameObject cardPool;
 
     [SerializeField]
-    private int numberOfCards;
+    private float multiplierYForMemoryGame = 1.8f;
 
     [SerializeField]
-    private float multiplierPos = 1.8f;
+    private float multiplierXForMemoryGame = 1.8f;
+
+    [SerializeField]
+    private int numberOfCardsFaces = 7;
+
+    [Header("Element 0 - Basic, Element 1 - Expert")]
+    [Space]
+
+    [Header("Difficulty: ")]
+    [SerializeField]
+    private int[] numberOfCardsByDifficulty = new int[2] { 10, 14 };
+
+    [Header("Element 0 - Basic, Element 1 - Expert")]
+    [SerializeField]
+    private float[] timeToFlipCardsByDifficulty = new float[2] { 4, 2 };
+
+    [Header("Element 0 - Basic, Element 1 - Expert")]
+    [SerializeField]
+    private int[] numberOfAttemptsByDifficulty = new int[2] { 4, 5 };
+
+    private int numberOfCards;
+
+    private int numberOfRightPairs;
+
+    private int numberOfMemoryAttempts;
 
     private int numberOfCardsRevealed = 0;
 
@@ -122,6 +216,33 @@ public class GameplayManager : MonoBehaviour
 
     private List<Cards_Script> cardsRevealed = new List<Cards_Script>(2);
 
+    // ***************************************************************************************** //
+
+    private int rows;
+    private int cols;
+
+    private int randomIndex = -1;
+
+    private int sec;
+    private int min;
+
+
+    [Header("Sounds")]
+    [Space]
+    [SerializeField]
+    private int indexSoundWon = 3;
+
+    [SerializeField]
+    private int indexSoundRight = 0;
+
+    [SerializeField]
+    private int indexSoundLost = 4;
+
+    [SerializeField]
+    private int indexSoundWrong = 1;
+
+    [SerializeField]
+    private int indexSoundCountDown = 0;
 
     private void Start()
     {
@@ -177,11 +298,11 @@ public class GameplayManager : MonoBehaviour
             Debug.Log("Adventute Selected " + indexAdventureSelected);
 
             //Set All Adventures SetActive False
-            MatchColourAdventurePool.SetActive(false);
+            matchColourAdventurePool.SetActive(false);
             mazeAdventurePool.SetActive(false);
-            TapDragAdventurePool.SetActive(false);
-            PuzzleAdventurePool.SetActive(false);
-            MemoryAdventurePool.SetActive(false);
+            tapDragAdventurePool.SetActive(false);
+            puzzleAdventurePool.SetActive(false);
+            memoryAdventurePool.SetActive(false);
         }
         else
         {
@@ -195,29 +316,140 @@ public class GameplayManager : MonoBehaviour
         switch (indexAdventureSelected)
         {
             case 0:
-                MatchColourAdventurePool.SetActive(true);
+                matchColourAdventurePool.SetActive(true);
                 MatchColourStart();
                 uiManager_GM.SetColourPanel(true);
                 break;
 
             case 1:
-                MazeStart();
+                switch (indexDifficulty)  // TIMER
+                {
+                    case 0:
+                        min = timeMazeByDifficulty[0];
+                        sec = timeMazeByDifficulty[1];
+                        break;
+
+                    case 1:
+                        min = timeMazeByDifficulty[2];
+                        sec = timeMazeByDifficulty[3];
+                        break;
+
+                    default:
+                        min = timeMazeByDifficulty[0];
+                        sec = timeMazeByDifficulty[1];
+                        break;
+                }
+
+                uiManager_GM.SetTimerActive(true);
+                uiManager_GM.UpdateTimer(min, sec);
+
+                uiManager_GM.SetReturnButton(true);
+
                 mazeAdventurePool.SetActive(true);
+
+                MazeStart();
+
+                playerScript = FindObjectOfType<Player_Script>().GetComponent<Player_Script>();
+                playerScript.GameStarted(true);
+                StartCoroutine(CountdownSec());
                 break;
 
             case 2:
+                numberOfItems = numberOfItemsByDifficulty[indexDifficulty];
+                numberOfTapDragAttempts = numberOfTapDragAttemptsByDifficulty[indexDifficulty];
+                numberOfRightItems = numberOfRightItemsByDifficulty[indexDifficulty];
+
+                switch (indexDifficulty)  // TIMER
+                {
+                    case 0:
+                        min = timeTapDragByDifficulty[0];
+                        sec = timeTapDragByDifficulty[1];
+                        break;
+
+                    case 1:
+                        min = timeTapDragByDifficulty[2];
+                        sec = timeTapDragByDifficulty[3];
+                        break;
+
+                    default:
+                        min = timeTapDragByDifficulty[0];
+                        sec = timeTapDragByDifficulty[1];
+                        break;
+                }
+
+                uiManager_GM.SetReturnButton(true);
+
+                uiManager_GM.SetAttempts(true);
+                uiManager_GM.UpdateAttempts(numberOfTapDragAttempts);
+
+                uiManager_GM.SetTimerActive(true);
+                uiManager_GM.UpdateTimer(min, sec);
+
+                tapDragAdventurePool.SetActive(true);
+
                 TapDragStart();
-                TapDragAdventurePool.SetActive(true);
+
+                playerScript = FindObjectOfType<Player_Script>().GetComponent<Player_Script>();
+                playerScript.GameStarted(true);
+                StartCoroutine(CountdownSec());
                 break;
 
             case 3:
+                numberOfPuzzlePieces = numberOfPiecesByDifficulty[indexDifficulty];
+                numberOfPuzzlePiecesDone = numberOfPuzzlePieces;
+                numberOfPuzzleAttempts = numberOfPuzzleAttemptsByDifficulty[indexDifficulty];
+                switch (indexDifficulty)  // TIMER
+                {
+                    case 0:
+                        min = timePuzzleByDifficulty[0];
+                        sec = timePuzzleByDifficulty[1];
+                        break;
+
+                    case 1:
+                        min = timePuzzleByDifficulty[2];
+                        sec = timePuzzleByDifficulty[3];
+                        break;
+
+                    default:
+                        min = timePuzzleByDifficulty[0];
+                        sec = timePuzzleByDifficulty[1];
+                        break;
+                }
+
+                uiManager_GM.SetReturnButton(true);
+
+                uiManager_GM.SetAttempts(true);
+                uiManager_GM.UpdateAttempts(numberOfPuzzleAttempts);
+
+                uiManager_GM.SetTimerActive(true);
+                uiManager_GM.UpdateTimer(min, sec);
+
+                puzzleAdventurePool.SetActive(true);
+
                 PuzzleStart();
-                PuzzleAdventurePool.SetActive(true);
+
+                playerScript = FindObjectOfType<Player_Script>().GetComponent<Player_Script>();
+                playerScript.GameStarted(true);
+                StartCoroutine(CountdownSec());
                 break;
 
             case 4:
+                numberOfCards = numberOfCardsByDifficulty[indexDifficulty];
+                numberOfMemoryAttempts = numberOfAttemptsByDifficulty[indexDifficulty];
+
+                uiManager_GM.SetReturnButton(true);
+
+                uiManager_GM.SetAttempts(true);
+                uiManager_GM.UpdateAttempts(numberOfMemoryAttempts);
+
+                memoryAdventurePool.SetActive(true);
+
+                numberOfRightPairs = 0;
+
                 MemoryStart();
-                MemoryAdventurePool.SetActive(true);
+
+                playerScript = FindObjectOfType<Player_Script>().GetComponent<Player_Script>();
+                StartCoroutine(WaitToFlipCards(timeToFlipCardsByDifficulty[indexDifficulty]));
                 break;
 
             default:
@@ -242,7 +474,67 @@ public class GameplayManager : MonoBehaviour
     //MAZE GAME
     private void MazeStart()
     {
+        for (int i = 0; i < mazeBasic.Length; i++)
+        {
+            mazeBasic[i].SetActive(false);
+        }
 
+        for (int i = 0; i < mazeExpert.Length; i++)
+        {
+            mazeExpert[i].SetActive(false);
+        }
+
+        switch (indexDifficulty)
+        {
+            case 0:
+                mazeBasic[0].SetActive(true);
+                break;
+
+            case 1:
+                mazeExpert[0].SetActive(true);
+                break;
+            default:
+                break;
+        }
+
+        numberOfMazeAttempts = numberOfMazeAttemptsByDifficulty[indexDifficulty];
+
+        uiManager_GM.UpdateAttempts(numberOfMazeAttempts);
+
+        uiManager_GM.SetAttempts(true);
+    }
+
+    public void CheckMazeLossCondition()
+    {
+        // Play Sound
+        audioManager.PlayClip(indexSoundWrong, 0.6f);
+        // ****
+        numberOfMazeAttempts--;
+        uiManager_GM.UpdateAttempts(numberOfMazeAttempts);
+        if (numberOfMazeAttempts <= 0)
+        {
+            // Play Sound
+            audioManager.PlayClip(indexSoundLost, 0.6f);
+            // ****
+            StopAllCoroutines();
+            uiManager_GM.UpdateAttempts(0);
+            GameEnded();
+        }
+    }
+
+    public void CheckMazeWinCondition()
+    {
+        // Play Sound
+        audioManager.PlayClip(indexSoundRight, 0.6f);
+        // ****
+        if (numberOfMazeAttempts > 0)
+        {
+            // Play Sound
+            audioManager.PlayClip(indexSoundWon, 0.6f);
+            // ****
+            StopAllCoroutines();
+            GameEnded();
+        }
     }
 
     // ******************************************************
@@ -250,13 +542,22 @@ public class GameplayManager : MonoBehaviour
     // MEMORY GAME
     private void MemoryStart()
     {
+        var cardsFace = new List<int>(numberOfCardsFaces);
+        for (int i = 0; i < numberOfCardsFaces; i++)
+        {
+            cardsFace.Add(i);
+        }
+
+
         cardIndexes = new List<int>(numberOfCards);
         for (int i = 0; i < numberOfCards / 2; i++)
         {
+            int x = cardsFace[Random.Range(0, cardsFace.Count)];
             for (int j = 0; j < 2; j++)
             {
-                cardIndexes.Add(i);
+                cardIndexes.Add(x);
             }
+            cardsFace.Remove(x);
         }
 
         rows = Mathf.CeilToInt(numberOfCards / 3f);
@@ -285,14 +586,32 @@ public class GameplayManager : MonoBehaviour
             for (int x = 0; x < cols; x++)
             {
                 randomIndex = Random.Range(0, cardIndexes.Count);
-                Vector3 position = new Vector3((cols / 2 - x - correctX) * multiplierPos, (rows / 2 - y + increaseY) * multiplierPos, 0);
+                Vector3 position = new Vector3((cols / 2 - x - correctX) * multiplierXForMemoryGame, (rows / 2 - y + increaseY) * multiplierYForMemoryGame, 0);
                 var temp = Instantiate(card, position, Quaternion.Euler(-5, 0, 0), cardPool.transform); // FIX ROTATION
                 numbersOfCardsCreated++;
                 temp.GetComponent<Cards_Script>().CardIndex = cardIndexes[randomIndex];
                 temp.GetComponent<Cards_Script>().SetGameplayManager(this);
+                temp.GetComponent<Cards_Script>().FlipCards(false);
                 cardIndexes.Remove(cardIndexes[randomIndex]);
             }
         }
+    }
+
+    private IEnumerator WaitToFlipCards(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        var cards = GameObject.FindGameObjectsWithTag("Cards");
+
+        foreach (GameObject card in cards)
+        {
+            card.GetComponent<Cards_Script>().FlipCards(true);
+        }
+
+        // Play Sound
+        audioManager.PlayClip(4, 0.8f);
+        // ****
+
+        playerScript.GameStarted(true);
     }
 
     public void AddCardRevealed(Cards_Script card)
@@ -329,8 +648,35 @@ public class GameplayManager : MonoBehaviour
         bool success = false;
         if (cardsRevealed[0].CardIndex == cardsRevealed[1].CardIndex)
         {
+            /// Play Sound
+            audioManager.PlayClip(indexSoundRight, 0.6f);
+            // ****
             //Check if the indexes are the same
             success = true;
+            numberOfRightPairs++;
+            if (numberOfCards == numberOfRightPairs * 2)
+            {
+                // Play Sound
+                audioManager.PlayClip(indexSoundWon, 0.6f);
+                // ****
+                GameEnded();
+            }
+        }
+        else
+        {
+            // Play Sound
+            audioManager.PlayClip(indexSoundWrong, 0.6f);
+            // ****
+            numberOfMemoryAttempts--;
+            uiManager_GM.UpdateAttempts(numberOfMemoryAttempts);
+            if (numberOfMemoryAttempts <= 0)
+            {
+                // Play Sound
+                audioManager.PlayClip(indexSoundLost, 0.6f);
+                // ****
+                uiManager_GM.UpdateAttempts(0);
+                GameEnded();
+            }
         }
         return success;
     }
@@ -432,17 +778,74 @@ public class GameplayManager : MonoBehaviour
             }
         }
     }
+    public bool CheckPiece(Puzzle_Script piece, Puzzle_Script puzzleBoard)
+    {
+        bool success = false;
+        if (piece.Index == puzzleBoard.Index)
+        {
+            /// Play Sound
+            audioManager.PlayClip(indexSoundRight, 0.6f);
+            // ****
+            //Check if the indexes are the same
+            success = true;
+            numberOfPuzzlePiecesDone--;
+            if (numberOfPuzzlePiecesDone <= 0)
+            {
+                // Play Sound
+                audioManager.PlayClip(indexSoundWon, 0.6f);
+                // ****
+                StopAllCoroutines();
+                GameEnded();                
+            }
+        }
+        else
+        {
+            // Play Sound
+            audioManager.PlayClip(indexSoundWrong, 0.6f);
+            // ****
+            numberOfPuzzleAttempts--;
+            uiManager_GM.UpdateAttempts(numberOfPuzzleAttempts);
+            if (numberOfPuzzleAttempts <= 0)
+            {
+                // Play Sound
+                audioManager.PlayClip(indexSoundLost, 0.6f);
+                // ****
+                StopAllCoroutines();
+                uiManager_GM.UpdateAttempts(0);
+                GameEnded();
+              }
+        }
+
+        return success;
+    }
+
+
     // ******************************************************
 
     //Tap&Drag Game
     private void TapDragStart()
     {
+        var allItems = new List<int>(numberOfAllItems - 4);
+        for (int i = 4; i < numberOfAllItems; i++)
+        {
+            allItems.Add(i);
+        }
+
         itemsIndexes = new List<int>(numberOfItems);
         for (int i = 0; i < numberOfItems; i++)
         {
-            itemsIndexes.Add(i);
-        }
+            if (i <= 3)
+            {
+                itemsIndexes.Add(i);
+            }
+            else
+            {
+                int x = allItems[Random.Range(0, allItems.Count)];
+                itemsIndexes.Add(x);
+                allItems.Remove(x);
+            }
 
+        }
 
         rows = Mathf.CeilToInt(numberOfItems / 3f);
         cols = 3;
@@ -487,15 +890,102 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
+
+    public bool CheckItem(TapDrag_Script item)
+    {
+        bool success = false;
+        if (item.Index < 4)
+        {
+            /// Play Sound
+            audioManager.PlayClip(indexSoundRight, 0.6f);
+            // ****
+            //Check if the indexes are the same
+            success = true;
+            numberOfRightItems--;
+            if (numberOfRightItems <= 0)
+            {
+                // Play Sound
+                audioManager.PlayClip(indexSoundWon, 0.6f);
+                // ****
+                StopAllCoroutines();
+                GameEnded();
+            }
+        }
+        else
+        {
+            // Play Sound
+            audioManager.PlayClip(indexSoundWrong, 0.6f);
+            // ****
+            numberOfTapDragAttempts--;
+            uiManager_GM.UpdateAttempts(numberOfTapDragAttempts);
+            if (numberOfTapDragAttempts <= 0)
+            {
+                // Play Sound
+                audioManager.PlayClip(indexSoundLost, 0.6f);
+                // ****
+                StopAllCoroutines();
+                uiManager_GM.UpdateAttempts(0);
+                GameEnded();
+            }
+        }
+
+        return success;
+    }
+
     // ******************************************************
 
-    public void GameEnded()
+    // CountDown
+
+    private IEnumerator CountdownSec()
     {
+        int counter = sec;
+        while (counter > 0)
+        {
+            yield return new WaitForSeconds(1);
+            counter--;
+            if (counter <= 3 && counter > 0)
+            {
+                // Play Sound
+                audioManager.PlayClip(indexSoundCountDown, 0.6f);
+                // ****
+            }
+            uiManager_GM.UpdateTimer(min, counter);
+        }
+        CountdownMin();
+    }
+
+    private void CountdownMin()
+    {
+        if (min > 0)
+        {
+            min--;
+            sec = 59;
+            uiManager_GM.UpdateTimer(min, sec);
+            StartCoroutine(CountdownSec());
+        }
+        else
+        {
+            StopAllCoroutines();
+            // Play Sound
+            audioManager.PlayClip(indexSoundLost, 0.6f);
+            // ****
+            GameEnded();
+        }
+    }
+
+
+    // ******************************************************
+
+    private void GameEnded()
+    {
+        playerScript.GameStarted(false);
         uiManager_GM.SetGameEndedPanel(true);
     }
 
     public void LoadSelectedScene(int indexSelected)
     {
+        musicManager.UpMusic();
+
         StartCoroutine(StartLoadAsyncScene(indexSelected));
     }
 

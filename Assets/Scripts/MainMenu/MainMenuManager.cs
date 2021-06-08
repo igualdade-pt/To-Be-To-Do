@@ -78,6 +78,8 @@ public class MainMenuManager : MonoBehaviour
 
     private IEnumerator StartLoadAsyncScene(int indexScene)
     {
+        yield return new WaitForSeconds(3f);
+
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(indexScene);
 
         // Wait until the asynchronous scene fully loads
@@ -97,9 +99,14 @@ public class MainMenuManager : MonoBehaviour
     {
         gameInstance.SuperPowerIndex = superPowerIndex;
     }
-    public void UpdateCompanySelected(int CompanyIndex)
+    public void UpdateCompanionSelected(int CompanionIndex)
     {
-        
+        gameInstance.CompanionIndex = CompanionIndex;
+    }
+
+    public void UpdateClothesSelected(int ClothesIndex)
+    {
+        gameInstance.ClothesIndex = ClothesIndex;
     }
 
 

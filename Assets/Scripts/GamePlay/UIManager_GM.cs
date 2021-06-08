@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager_GM : MonoBehaviour
 {
@@ -30,6 +31,13 @@ public class UIManager_GM : MonoBehaviour
     [SerializeField]
     private GameObject returnButton;
 
+    [SerializeField]
+    private Text timerRemainText;
+
+    [SerializeField]
+    private Text attemptsRemainText;
+
+
     private void Start()
     {
         gameplayManager = FindObjectOfType<GameplayManager>().GetComponent<GameplayManager>();
@@ -39,6 +47,8 @@ public class UIManager_GM : MonoBehaviour
         colourPanel.SetActive(false);
         screenShotPanel.SetActive(false);
         returnButton.SetActive(false);
+        timerRemainText.gameObject.SetActive(false);
+        attemptsRemainText.transform.parent.gameObject.SetActive(false);
 
         StartCoroutine(x());
     }
@@ -94,6 +104,25 @@ public class UIManager_GM : MonoBehaviour
     public void SetReturnButton(bool value)
     {
         returnButton.SetActive(value);
+    }
+    public void UpdateAttempts(int value)
+    {
+        attemptsRemainText.text = value.ToString();
+    }
+
+    public void SetAttempts (bool value)
+    {
+        attemptsRemainText.transform.parent.gameObject.SetActive(value);
+    }
+
+    public void UpdateTimer(int min, int sec)
+    {
+        timerRemainText.text = min.ToString() + ":" + sec.ToString("00");
+    }
+
+    public void SetTimerActive(bool value)
+    {
+        timerRemainText.gameObject.SetActive(value);
     }
 
     public void _Return()

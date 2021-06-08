@@ -3434,8 +3434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameplayTest: 0
   mobile: 1
-  indexGameSelected: 0
-  brushLinePool: {fileID: 0}
+  indexAdventureSelected: -1
   brush: {fileID: 0}
   colorOfLine:
     serializedVersion: 2
@@ -11468,8 +11467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameplayTest: 0
   mobile: 0
-  indexGameSelected: 2
-  brushLinePool: {fileID: 0}
+  indexAdventureSelected: -1
   brush: {fileID: 0}
   colorOfLine:
     serializedVersion: 2
@@ -21489,8 +21487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameplayTest: 0
   mobile: 0
-  indexGameSelected: 1
-  brushLinePool: {fileID: 2020703882}
+  indexAdventureSelected: -1
   brush: {fileID: 5885558827282603598, guid: 9007a070c42ec804b8570dd5cc4d0432, type: 3}
   colorOfLine:
     serializedVersion: 2
@@ -22937,42 +22934,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameplayTest: 0
   indexDifficultyTEST: 1
-  indexGameSelected: 1
-  matchColourGamePool: {fileID: 1056187067}
-  dragConnectGamePool: {fileID: 1873782705}
-  connectCard: {fileID: 4106418328509340289, guid: 485e09791e8b556499f461af9b97bbab, type: 3}
-  connectCardPositionX:
-  - -1.6
-  - 1.6
-  connectCardPositionY: 2
-  characterCardConnect: {fileID: 5371722774313409620, guid: a5acde271232a8f478fd8772b16ba219, type: 3}
-  cardCharacterConnectPosition: {fileID: 409662985}
-  connectCardPool: {fileID: 967591144}
-  linePool: {fileID: 2020703881}
-  multiplierYForConnectGame: 2
-  numberOfConnectCardsFaces: 25
-  timeBetweenCards: 2
-  timeToStartGame: 2
-  numberOfConnectCardsByDifficulty: 0600000008000000
-  numberOfRightConnectsByDifficulty: 0600000008000000
-  timerByDifficulty: 000000001e000000000000000f000000
-  numberOfAttemptsToConnectByDifficulty: 0500000004000000
-  memoryGamePool: {fileID: 1329206160}
+  indexAdventureSelected: -1
+  MatchColourAdventurePool: {fileID: 0}
+  mazeAdventurePool: {fileID: 0}
+  mazeBasic: []
+  mazeExpert: []
+  TapDragAdventurePool: {fileID: 0}
+  item: {fileID: 0}
+  itemPool: {fileID: 0}
+  numberOfItems: 0
+  PuzzleAdventurePool: {fileID: 0}
+  puzzlePiece: {fileID: 0}
+  puzzlePiecePool: {fileID: 0}
+  numberOfPuzzlePieces: 0
+  scaleMultiplierUnder9: 0.4
+  scaleMultiplierOver9: 0.3
+  MemoryAdventurePool: {fileID: 0}
   card: {fileID: 7533047853907833944, guid: 23c79c71c040c064bbaef020b092edac, type: 3}
   cardPool: {fileID: 1543097604}
-  multiplierXForMemoryGame: 1.8
-  multiplierYForMemoryGame: 2.2
-  numberOfCardsFaces: 25
-  numberOfCardsByDifficulty: 080000000c000000
-  timeToFlipCardsByDifficulty:
-  - 4
-  - 3
-  numberOfAttemptsByDifficulty: 0600000009000000
-  indexSoundVictory: 9
-  indexSoundRight: 8
-  indexSoundLost: 7
-  indexSoundWrong: 6
-  indexSoundCountDown: 0
+  numberOfCards: 0
+  multiplierPos: 1.8
 --- !u!1 &1719271254
 GameObject:
   m_ObjectHideFlags: 0

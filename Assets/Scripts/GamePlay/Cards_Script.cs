@@ -18,7 +18,11 @@ public class Cards_Script : MonoBehaviour
 
     private GameplayManager gameplayManager;
 
+    private AudioManager audioManager;
+
     private bool remainVisible = false;
+
+    private bool gameStarted = false;
 
     [Header("Animation Card")]
     [SerializeField]
@@ -32,7 +36,8 @@ public class Cards_Script : MonoBehaviour
 
     private void Start()
     {
-        
+        spriteRenderer.sprite = cardBack;
+        canFlip = true;
     }
 
     public void CardClicked()
@@ -40,6 +45,9 @@ public class Cards_Script : MonoBehaviour
         
         if (canFlip && !remainVisible && !gameplayManager.TwoCardsRevealed())
         {
+            // Play Sound
+            audioManager.PlayClip(4, 0.8f);
+            // ****
             canFlip = false;
             // Rotation And Flip Sprite
             if (spriteRenderer.sprite == cardBack) // Turn Face
@@ -57,13 +65,16 @@ public class Cards_Script : MonoBehaviour
 
     private void FinishAnimation()
     {
-        if (spriteRenderer.sprite != cardBack)
+        if (gameStarted)
         {
-            gameplayManager.AddCardRevealed(this);
-        }
-        else 
-        {
-            canFlip = true;
+            if (spriteRenderer.sprite != cardBack)
+            {
+                gameplayManager.AddCardRevealed(this);
+            }
+            else
+            {
+                canFlip = true;
+            }
         }
     }
 
@@ -88,6 +99,7 @@ public class Cards_Script : MonoBehaviour
     public void SetGameplayManager(GameplayManager gm)
     {
         gameplayManager = gm;
+        audioManager = FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
     }
 
     public void SetRemainVisible(bool temp)
@@ -98,5 +110,26 @@ public class Cards_Script : MonoBehaviour
     public void SetCanFlip(bool flip)
     {
         canFlip = flip;
+    }
+
+    /// <summary>
+    /// After this flip the game will start?
+    /// </summary>
+    public void FlipCards(bool value)
+    {
+        if (canFlip && !remainVisible)
+        {
+            canFlip = false;
+            // Rotation And Flip Sprite
+            if (spriteRenderer.sprite == cardBack) // Turn Face
+            {
+                myAnimator.SetTrigger("FlipBack");
+            }
+            else // Turn Back
+            {
+                myAnimator.SetTrigger("FlipFront");
+            }
+        }
+        gameStarted = value;
     }
 }

@@ -51,6 +51,14 @@ public class UIManager_MM : MonoBehaviour
     [SerializeField]
     private Sprite[] adventureSprite;
 
+    [Header("Sound")]
+    [SerializeField]
+    private int indexSoundWrong;
+
+    [SerializeField]
+    private int indexSoundRight;
+
+
     private int randomIndex;
 
     private List<int> adventureIndexes;
@@ -207,10 +215,16 @@ public class UIManager_MM : MonoBehaviour
         {
             if (clothesIndex == adventureIndexSelected)
             {
+                // Play Sound
+                audioManager.PlayClip(indexSoundRight, 0.6f);
+                // ****      
                 clothesSelectedImage.sprite = clothesSelectedSprite[0];
             }
             else
             {
+                // Play Sound
+                audioManager.PlayClip(indexSoundWrong, 0.6f);
+                // ****      
                 clothesSelectedImage.sprite = clothesSelectedSprite[1];
             }
             clothesSelectedCanvas.SetActive(true);

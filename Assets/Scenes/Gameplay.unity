@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameplayTest: 0
-  mobile: 0
+  mobile: 1
   indexAdventureSelected: 2
   brush: {fileID: 0}
   colorOfLine:
@@ -11737,7 +11737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameplayTest: 0
-  mobile: 0
+  mobile: 1
   indexAdventureSelected: 4
   brush: {fileID: 0}
   colorOfLine:
@@ -21688,7 +21688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameplayTest: 0
-  mobile: 0
+  mobile: 1
   indexAdventureSelected: 3
   brush: {fileID: 0}
   colorOfLine:
@@ -23607,8 +23607,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 602f468ea42fa384e8815084c896e4b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameplayTest: 1
-  mobile: 0
+  gameplayTest: 0
+  mobile: 1
   indexAdventureSelected: 1
   brush: {fileID: 5885558827282603598, guid: 9007a070c42ec804b8570dd5cc4d0432, type: 3}
   colorOfLine:

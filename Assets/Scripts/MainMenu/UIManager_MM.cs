@@ -43,7 +43,7 @@ public class UIManager_MM : MonoBehaviour
     private Sprite[] characterSprite;
 
     [SerializeField]
-    private Sprite[] copmpanionSprite;
+    private Sprite[] companionSprite;
 
     [SerializeField]
     private Button[] adventureButtons;
@@ -250,12 +250,12 @@ public class UIManager_MM : MonoBehaviour
             characterImage.sprite = characterSprite[clothesIndexSelected];
             if (companionIndexSelected < 2)
             {
-                companionImage[0].sprite = copmpanionSprite[companionIndexSelected];
+                companionImage[0].sprite = companionSprite[companionIndexSelected];
                 companionImage[0].gameObject.SetActive(true);
             }
             else if (companionIndexSelected == 2)
             {
-                companionImage[1].sprite = copmpanionSprite[companionIndexSelected];
+                companionImage[1].sprite = companionSprite[companionIndexSelected];
                 companionImage[1].gameObject.SetActive(true);
             }
             else

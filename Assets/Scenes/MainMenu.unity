@@ -797,7 +797,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ba559b06c2ac62c4aa14e43763f40d2b, type: 3}
   - {fileID: 21300000, guid: a41b8f77365f2574db7079aa143a259f, type: 3}
   - {fileID: 21300000, guid: 6bb57fae0fabf1043905ed8042b24249, type: 3}
-  copmpanionSprite:
+  companionSprite:
   - {fileID: 21300000, guid: 053fedcd3483ea7489ee4d08c0ddf541, type: 3}
   - {fileID: 21300000, guid: 418360d449cebde4d8528cecc44bfcae, type: 3}
   - {fileID: 21300000, guid: 15aba6dd92fea0145ab4ab5afb09194a, type: 3}

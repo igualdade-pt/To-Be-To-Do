@@ -37,6 +37,10 @@ public class UIManager_GM : MonoBehaviour
     [SerializeField]
     private Text attemptsRemainText;
 
+    [Header("Texts")]
+    [Space]
+    [SerializeField]
+    private Text textTitleGameEnded;
 
     private void Start()
     {
@@ -65,23 +69,34 @@ public class UIManager_GM : MonoBehaviour
         switch (indexLanguage)
         {
             case 0:
-
+                // EN
+                textTitleGameEnded.text = "Play Again?";
                 break;
+
             case 1:
-
+                // IT
+                textTitleGameEnded.text = "Gioca Di Nuovo?";
                 break;
+
             case 2:
-
+                // PT
+                textTitleGameEnded.text = "Jogar De Novo?";
                 break;
+
             case 3:
-
+                // ES
+                textTitleGameEnded.text = "¿Juega DSe Nuevo?";
                 break;
+
             case 4:
+                // SE
+                textTitleGameEnded.text = "Spela Igen?";
                 break;
 
             default:
+                // EN
+                textTitleGameEnded.text = "Play Again?";
                 Debug.Log("UiManager_GM Menu, Unavailable language, English Selected: " + indexLanguage);
-
                 break;
         }
     }

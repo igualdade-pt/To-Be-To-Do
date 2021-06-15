@@ -583,7 +583,7 @@ public class Player_Script : MonoBehaviour
                                 if (hit.collider.tag == "PuzzleBoard")
                                 {
                                     Puzzle_Script puzzleBoard = hit.collider.GetComponent<Puzzle_Script>();
-                                    if (puzzleBoard.Empty && puzzleBoard.Index == pieceSelected.GetComponent<Puzzle_Script>().Index)
+                                    if (puzzleBoard.Empty && gameplayManager.CheckPiece(pieceSelected.GetComponent<Puzzle_Script>(), puzzleBoard))
                                     {
                                         puzzleBoard.GetComponent<SpriteRenderer>().sprite = pieceSelected.GetComponent<SpriteRenderer>().sprite;
                                         puzzleBoard.Empty = false;

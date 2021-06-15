@@ -51,6 +51,20 @@ public class UIManager_MM : MonoBehaviour
     [SerializeField]
     private Sprite[] adventureSprite;
 
+    [Header("Texts")]
+    [Space]
+    [SerializeField]
+    private Text textAdventure;
+
+    [SerializeField]
+    private Text textSuperPower;
+
+    [SerializeField]
+    private Text textCompanion;
+
+    [SerializeField]
+    private Text textClothes;
+
     [Header("Sound")]
     [SerializeField]
     private int indexSoundWrong;
@@ -152,7 +166,57 @@ public class UIManager_MM : MonoBehaviour
 
     public void UpdateLanguage(int indexLanguage)
     {
+        // Change Title
+        switch (indexLanguage)
+        {
+            case 0:
+                // English
+                textAdventure.text = "Choose Your Adventure!";
+                textSuperPower.text = "Choose Your Superpower!";
+                textCompanion.text = "Choose Your Companion!";
+                textClothes.text = "Choose Your Clothes!";
+                break;
 
+            case 1:
+                // Italian
+                textAdventure.text = "Scegli La Tua Avventura!";
+                textSuperPower.text = "Scegli Il Tuo Superpotere!";
+                textCompanion.text = "Scegli Il Tuo Compagno!";
+                textClothes.text = "Scegli I Tuoi Vestiti!";
+                break;
+
+            case 2:
+                // Portuguese
+                textAdventure.text = "Escolhe A Tua Aventura!";
+                textSuperPower.text = "Escolhe O Teu Superpoder!";
+                textCompanion.text = "Escolhe A Tua Companhia!";
+                textClothes.text = "Escolhe As Tuas Roupas!!";
+                break;
+
+            case 3:
+                // Spanish
+                textAdventure.text = "Elige Tu Aventura!";
+                textSuperPower.text = "Elige Tu Superpoder!";
+                textCompanion.text = "Elige Tu Acompañante!";
+                textClothes.text = "Elige Tu Ropa!";
+                break;
+
+            case 4:
+                // Swedish
+                textAdventure.text = "Välj Ditt Äventyr!";
+                textSuperPower.text = "Välj Din Supermakt!";
+                textCompanion.text = "Välj Din Följeslagare!";
+                textClothes.text = "Välj Din Kläder!!";
+                break;
+
+            default:
+                // English
+                textAdventure.text = "Choose Your Adventure!";
+                textSuperPower.text = "Choose Your Superpower!";
+                textCompanion.text = "Choose Your Companion!";
+                textClothes.text = "Choose Your Clothes!";
+                break;
+        }
     }
 
 

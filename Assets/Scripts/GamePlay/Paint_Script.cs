@@ -90,6 +90,6 @@ public class Paint_Script : MonoBehaviour
 
     private void SaveAt()
     {
-        FileUtil.MoveFileOrDirectory(Application.dataPath + nameFile + ".png", Application.dataPath + "/ScreenShots" + nameFile + ".png");
+        //FileUtil.MoveFileOrDirectory(Application.dataPath + nameFile + ".png", Application.dataPath + "/ScreenShots" + nameFile + ".png");
     }
 }

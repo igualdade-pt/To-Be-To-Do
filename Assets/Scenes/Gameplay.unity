@@ -6368,7 +6368,7 @@ GameObject:
   - component: {fileID: 443890478}
   - component: {fileID: 443890477}
   m_Layer: 0
-  m_Name: ReturnToMenu
+  m_Name: ButtonNo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6439,7 +6439,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1531799418}
         m_TargetAssemblyTypeName: UIManager_GM, Assembly-CSharp
-        m_MethodName: _RestartButtonClicked
+        m_MethodName: _Return
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8979,7 +8979,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &531436659
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9513,7 +9513,7 @@ GameObject:
   - component: {fileID: 619289381}
   - component: {fileID: 619289380}
   m_Layer: 0
-  m_Name: RestartGame
+  m_Name: ButtonYes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9584,7 +9584,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1531799418}
         m_TargetAssemblyTypeName: UIManager_GM, Assembly-CSharp
-        m_MethodName: _Return
+        m_MethodName: _RestartButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23337,6 +23337,7 @@ MonoBehaviour:
   returnButton: {fileID: 1494839878}
   timerRemainText: {fileID: 1544143598}
   attemptsRemainText: {fileID: 538677917}
+  textTitleGameEnded: {fileID: 1981953413}
 --- !u!1 &1536998214
 GameObject:
   m_ObjectHideFlags: 0
@@ -32294,7 +32295,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Return?
+  m_Text: Play Again?
 --- !u!222 &1981953414
 CanvasRenderer:
   m_ObjectHideFlags: 0

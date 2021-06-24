@@ -64,6 +64,9 @@ public class UIManager_SM : MonoBehaviour
     [SerializeField]
     private GameObject page;
 
+    [SerializeField]
+    private GameObject handGuide;
+
 
     [SerializeField]
     [Header("IT")]
@@ -183,7 +186,7 @@ public class UIManager_SM : MonoBehaviour
     [SerializeField]
     private Sprite[] pagesBookES_PT;
 
-    private RectTransform[] tPagesBookIES_PT;
+    private RectTransform[] tPagesBookES_PT;
 
 
     [SerializeField]
@@ -256,6 +259,7 @@ public class UIManager_SM : MonoBehaviour
     private RectTransform[][][] tPages = new RectTransform[4][][] { new RectTransform[5][], new RectTransform[5][] , new RectTransform[5][] , new RectTransform[5][] };
 
     [SerializeField]
+    [Space]
     private float[] xPages;
 
     [SerializeField]
@@ -286,6 +290,8 @@ public class UIManager_SM : MonoBehaviour
         {
             buttonBookSelectedPanel[i].SetActive(false);
         }
+
+        handGuide.SetActive(true);
     }
 
     private void Start()
@@ -302,46 +308,46 @@ public class UIManager_SM : MonoBehaviour
         }
 
         //Book IT
-        /*tPagesBookPT_EN = new RectTransform[pagesBookPT_EN.Length];
-        tPagesBookPT_IT = new RectTransform[pagesBookPT_IT.Length];
-        tPagesBookPT_PT = new RectTransform[pagesBookPT_PT.Length];
-        tPagesBookPT_ES = new RectTransform[pagesBookPT_ES.Length];
-        tPagesBookPT_SE = new RectTransform[pagesBookPT_SE.Length];
+        tPagesBookIT_EN = new RectTransform[pagesBookIT_EN.Length];
+        tPagesBookIT_IT = new RectTransform[pagesBookIT_IT.Length];
+        tPagesBookIT_PT = new RectTransform[pagesBookIT_PT.Length];
+        tPagesBookIT_ES = new RectTransform[pagesBookIT_ES.Length];
+        tPagesBookIT_SE = new RectTransform[pagesBookIT_SE.Length];
 
-        for (int i = 0; i < pagesBookPT_EN.Length; i++)
+        for (int i = 0; i < pagesBookIT_EN.Length; i++)
         {
-            GameObject tempPage = Instantiate(page, bookPT_EN.transform);
-            tPagesBookPT_EN[i] = tempPage.GetComponent<RectTransform>();
-            tempPage.GetComponent<Image>().sprite = pagesBookPT_EN[i];
+            GameObject tempPage = Instantiate(page, bookIT_EN.transform);
+            tPagesBookIT_EN[i] = tempPage.GetComponent<RectTransform>();
+            tempPage.GetComponent<Image>().sprite = pagesBookIT_EN[i];
         }
 
-        for (int i = 0; i < pagesBookPT_IT.Length; i++)
+        for (int i = 0; i < pagesBookIT_IT.Length; i++)
         {
-            GameObject tempPage = Instantiate(page, bookPT_IT.transform);
-            tPagesBookPT_IT[i] = tempPage.GetComponent<RectTransform>();
-            tempPage.GetComponent<Image>().sprite = pagesBookPT_IT[i];
+            GameObject tempPage = Instantiate(page, bookIT_IT.transform);
+            tPagesBookIT_IT[i] = tempPage.GetComponent<RectTransform>();
+            tempPage.GetComponent<Image>().sprite = pagesBookIT_IT[i];
         }
 
-        for (int i = 0; i < pagesBookPT_PT.Length; i++)
+        for (int i = 0; i < pagesBookIT_PT.Length; i++)
         {
-            GameObject tempPage = Instantiate(page, bookPT_PT.transform);
-            tPagesBookPT_PT[i] = tempPage.GetComponent<RectTransform>();
-            tempPage.GetComponent<Image>().sprite = pagesBookPT_PT[i];
+            GameObject tempPage = Instantiate(page, bookIT_PT.transform);
+            tPagesBookIT_PT[i] = tempPage.GetComponent<RectTransform>();
+            tempPage.GetComponent<Image>().sprite = pagesBookIT_PT[i];
         }
 
-        for (int i = 0; i < pagesBookPT_ES.Length; i++)
+        for (int i = 0; i < pagesBookIT_ES.Length; i++)
         {
-            GameObject tempPage = Instantiate(page, bookPT_ES.transform);
-            tPagesBookPT_ES[i] = tempPage.GetComponent<RectTransform>();
-            tempPage.GetComponent<Image>().sprite = pagesBookPT_ES[i];
+            GameObject tempPage = Instantiate(page, bookIT_ES.transform);
+            tPagesBookIT_ES[i] = tempPage.GetComponent<RectTransform>();
+            tempPage.GetComponent<Image>().sprite = pagesBookIT_ES[i];
         }
 
-        for (int i = 0; i < pagesBookPT_SE.Length; i++)
+        for (int i = 0; i < pagesBookIT_SE.Length; i++)
         {
-            GameObject tempPage = Instantiate(page, bookPT_SE.transform);
-            tPagesBookPT_SE[i] = tempPage.GetComponent<RectTransform>();
-            tempPage.GetComponent<Image>().sprite = pagesBookPT_SE[i];
-        } */
+            GameObject tempPage = Instantiate(page, bookIT_SE.transform);
+            tPagesBookIT_SE[i] = tempPage.GetComponent<RectTransform>();
+            tempPage.GetComponent<Image>().sprite = pagesBookIT_SE[i];
+        }
 
 
         //Book PT
@@ -388,97 +394,97 @@ public class UIManager_SM : MonoBehaviour
 
 
         //Book ES
-        /*tPagesBookPT_EN = new RectTransform[pagesBookPT_EN.Length];
-        tPagesBookPT_IT = new RectTransform[pagesBookPT_IT.Length];
-        tPagesBookPT_PT = new RectTransform[pagesBookPT_PT.Length];
-        tPagesBookPT_ES = new RectTransform[pagesBookPT_ES.Length];
-        tPagesBookPT_SE = new RectTransform[pagesBookPT_SE.Length];
+        tPagesBookES_EN = new RectTransform[pagesBookES_EN.Length];
+        tPagesBookES_IT = new RectTransform[pagesBookES_IT.Length];
+        tPagesBookES_PT = new RectTransform[pagesBookES_PT.Length];
+        tPagesBookES_ES = new RectTransform[pagesBookES_ES.Length];
+        tPagesBookES_SE = new RectTransform[pagesBookES_SE.Length];
 
-        for (int i = 0; i < pagesBookPT_EN.Length; i++)
+        for (int i = 0; i < pagesBookES_EN.Length; i++)
         {
-            GameObject tempPage = Instantiate(page, bookPT_EN.transform);
-            tPagesBookPT_EN[i] = tempPage.GetComponent<RectTransform>();
-            tempPage.GetComponent<Image>().sprite = pagesBookPT_EN[i];
+            GameObject tempPage = Instantiate(page, bookES_EN.transform);
+            tPagesBookES_EN[i] = tempPage.GetComponent<RectTransform>();
+            tempPage.GetComponent<Image>().sprite = pagesBookES_EN[i];
         }
 
-        for (int i = 0; i < pagesBookPT_IT.Length; i++)
+        for (int i = 0; i < pagesBookES_IT.Length; i++)
         {
-            GameObject tempPage = Instantiate(page, bookPT_IT.transform);
-            tPagesBookPT_IT[i] = tempPage.GetComponent<RectTransform>();
-            tempPage.GetComponent<Image>().sprite = pagesBookPT_IT[i];
+            GameObject tempPage = Instantiate(page, bookES_IT.transform);
+            tPagesBookES_IT[i] = tempPage.GetComponent<RectTransform>();
+            tempPage.GetComponent<Image>().sprite = pagesBookES_IT[i];
         }
 
-        for (int i = 0; i < pagesBookPT_PT.Length; i++)
+        for (int i = 0; i < pagesBookES_PT.Length; i++)
         {
-            GameObject tempPage = Instantiate(page, bookPT_PT.transform);
-            tPagesBookPT_PT[i] = tempPage.GetComponent<RectTransform>();
-            tempPage.GetComponent<Image>().sprite = pagesBookPT_PT[i];
+            GameObject tempPage = Instantiate(page, bookES_PT.transform);
+            tPagesBookES_PT[i] = tempPage.GetComponent<RectTransform>();
+            tempPage.GetComponent<Image>().sprite = pagesBookES_PT[i];
         }
 
-        for (int i = 0; i < pagesBookPT_ES.Length; i++)
+        for (int i = 0; i < pagesBookES_ES.Length; i++)
         {
-            GameObject tempPage = Instantiate(page, bookPT_ES.transform);
-            tPagesBookPT_ES[i] = tempPage.GetComponent<RectTransform>();
-            tempPage.GetComponent<Image>().sprite = pagesBookPT_ES[i];
+            GameObject tempPage = Instantiate(page, bookES_ES.transform);
+            tPagesBookES_ES[i] = tempPage.GetComponent<RectTransform>();
+            tempPage.GetComponent<Image>().sprite = pagesBookES_ES[i];
         }
 
-        for (int i = 0; i < pagesBookPT_SE.Length; i++)
+        for (int i = 0; i < pagesBookES_SE.Length; i++)
         {
-            GameObject tempPage = Instantiate(page, bookPT_SE.transform);
-            tPagesBookPT_SE[i] = tempPage.GetComponent<RectTransform>();
-            tempPage.GetComponent<Image>().sprite = pagesBookPT_SE[i];
-        } */
+            GameObject tempPage = Instantiate(page, bookES_SE.transform);
+            tPagesBookES_SE[i] = tempPage.GetComponent<RectTransform>();
+            tempPage.GetComponent<Image>().sprite = pagesBookES_SE[i];
+        }
 
 
         //Book SE
-        /*tPagesBookPT_EN = new RectTransform[pagesBookPT_EN.Length];
-        tPagesBookPT_IT = new RectTransform[pagesBookPT_IT.Length];
-        tPagesBookPT_PT = new RectTransform[pagesBookPT_PT.Length];
-        tPagesBookPT_ES = new RectTransform[pagesBookPT_ES.Length];
-        tPagesBookPT_SE = new RectTransform[pagesBookPT_SE.Length];
+        tPagesBookSE_EN = new RectTransform[pagesBookSE_EN.Length];
+        tPagesBookSE_IT = new RectTransform[pagesBookSE_IT.Length];
+        tPagesBookSE_PT = new RectTransform[pagesBookSE_PT.Length];
+        tPagesBookSE_ES = new RectTransform[pagesBookSE_ES.Length];
+        tPagesBookSE_SE = new RectTransform[pagesBookSE_SE.Length];
 
-        for (int i = 0; i < pagesBookPT_EN.Length; i++)
+        for (int i = 0; i < pagesBookSE_EN.Length; i++)
         {
-            GameObject tempPage = Instantiate(page, bookPT_EN.transform);
-            tPagesBookPT_EN[i] = tempPage.GetComponent<RectTransform>();
-            tempPage.GetComponent<Image>().sprite = pagesBookPT_EN[i];
+            GameObject tempPage = Instantiate(page, bookSE_EN.transform);
+            tPagesBookSE_EN[i] = tempPage.GetComponent<RectTransform>();
+            tempPage.GetComponent<Image>().sprite = pagesBookSE_EN[i];
         }
 
-        for (int i = 0; i < pagesBookPT_IT.Length; i++)
+        for (int i = 0; i < pagesBookSE_IT.Length; i++)
         {
-            GameObject tempPage = Instantiate(page, bookPT_IT.transform);
-            tPagesBookPT_IT[i] = tempPage.GetComponent<RectTransform>();
-            tempPage.GetComponent<Image>().sprite = pagesBookPT_IT[i];
+            GameObject tempPage = Instantiate(page, bookSE_IT.transform);
+            tPagesBookSE_IT[i] = tempPage.GetComponent<RectTransform>();
+            tempPage.GetComponent<Image>().sprite = pagesBookSE_IT[i];
         }
 
-        for (int i = 0; i < pagesBookPT_PT.Length; i++)
+        for (int i = 0; i < pagesBookSE_PT.Length; i++)
         {
-            GameObject tempPage = Instantiate(page, bookPT_PT.transform);
-            tPagesBookPT_PT[i] = tempPage.GetComponent<RectTransform>();
-            tempPage.GetComponent<Image>().sprite = pagesBookPT_PT[i];
+            GameObject tempPage = Instantiate(page, bookSE_PT.transform);
+            tPagesBookSE_PT[i] = tempPage.GetComponent<RectTransform>();
+            tempPage.GetComponent<Image>().sprite = pagesBookSE_PT[i];
         }
 
-        for (int i = 0; i < pagesBookPT_ES.Length; i++)
+        for (int i = 0; i < pagesBookSE_ES.Length; i++)
         {
-            GameObject tempPage = Instantiate(page, bookPT_ES.transform);
-            tPagesBookPT_ES[i] = tempPage.GetComponent<RectTransform>();
-            tempPage.GetComponent<Image>().sprite = pagesBookPT_ES[i];
+            GameObject tempPage = Instantiate(page, bookSE_ES.transform);
+            tPagesBookSE_ES[i] = tempPage.GetComponent<RectTransform>();
+            tempPage.GetComponent<Image>().sprite = pagesBookSE_ES[i];
         }
 
-        for (int i = 0; i < pagesBookPT_SE.Length; i++)
+        for (int i = 0; i < pagesBookSE_SE.Length; i++)
         {
-            GameObject tempPage = Instantiate(page, bookPT_SE.transform);
-            tPagesBookPT_SE[i] = tempPage.GetComponent<RectTransform>();
-            tempPage.GetComponent<Image>().sprite = pagesBookPT_SE[i];
-        } */
+            GameObject tempPage = Instantiate(page, bookSE_SE.transform);
+            tPagesBookSE_SE[i] = tempPage.GetComponent<RectTransform>();
+            tempPage.GetComponent<Image>().sprite = pagesBookSE_SE[i];
+        }
 
 
         // Books 
-        tPages[0][0] = tPagesBookPT_EN;
-        tPages[0][1] = tPagesBookPT_IT;
-        tPages[0][2] = tPagesBookPT_PT;
-        tPages[0][3] = tPagesBookPT_ES;
-        tPages[0][4] = tPagesBookPT_SE;
+        tPages[0][0] = tPagesBookIT_EN;
+        tPages[0][1] = tPagesBookIT_IT;
+        tPages[0][2] = tPagesBookIT_PT;
+        tPages[0][3] = tPagesBookIT_ES;
+        tPages[0][4] = tPagesBookIT_SE;
 
         tPages[0][0][0].parent.gameObject.SetActive(false);
         tPages[0][1][0].parent.gameObject.SetActive(false);
@@ -498,11 +504,11 @@ public class UIManager_SM : MonoBehaviour
         tPages[1][3][0].parent.gameObject.SetActive(false);
         tPages[1][4][0].parent.gameObject.SetActive(false);
 
-        tPages[2][0] = tPagesBookPT_EN;
-        tPages[2][1] = tPagesBookPT_IT;
-        tPages[2][2] = tPagesBookPT_PT;
-        tPages[2][3] = tPagesBookPT_ES;
-        tPages[2][4] = tPagesBookPT_SE;
+        tPages[2][0] = tPagesBookES_EN;
+        tPages[2][1] = tPagesBookES_IT;
+        tPages[2][2] = tPagesBookES_PT;
+        tPages[2][3] = tPagesBookES_ES;
+        tPages[2][4] = tPagesBookES_SE;
 
         tPages[2][0][0].parent.gameObject.SetActive(false);
         tPages[2][1][0].parent.gameObject.SetActive(false);
@@ -510,11 +516,11 @@ public class UIManager_SM : MonoBehaviour
         tPages[2][3][0].parent.gameObject.SetActive(false);
         tPages[2][4][0].parent.gameObject.SetActive(false);
 
-        tPages[3][0] = tPagesBookPT_EN;
-        tPages[3][1] = tPagesBookPT_IT;
-        tPages[3][2] = tPagesBookPT_PT;
-        tPages[3][3] = tPagesBookPT_ES;
-        tPages[3][4] = tPagesBookPT_SE;
+        tPages[3][0] = tPagesBookSE_EN;
+        tPages[3][1] = tPagesBookSE_IT;
+        tPages[3][2] = tPagesBookSE_PT;
+        tPages[3][3] = tPagesBookSE_ES;
+        tPages[3][4] = tPagesBookSE_SE;
 
         tPages[3][0][0].parent.gameObject.SetActive(false);
         tPages[3][1][0].parent.gameObject.SetActive(false);
@@ -633,6 +639,7 @@ public class UIManager_SM : MonoBehaviour
             tPages[indexBookSelected][indexLanguage][0].parent.gameObject.SetActive(false);
             buttonsBooksPanel.SetActive(false);
             buttonsBooksPanel.SetActive(true);
+            handGuide.SetActive(true);
             //buttonCloseBooksPanel.SetActive(true);
         }
 
@@ -675,6 +682,7 @@ public class UIManager_SM : MonoBehaviour
             buttonsBooksPanel.SetActive(false);
             buttonsBooksPanel.SetActive(true);
             buttonCloseBooksPanel.SetActive(true);
+            
         }
     }
 
@@ -696,7 +704,8 @@ public class UIManager_SM : MonoBehaviour
             // Play Sound
             audioManager.PlayClip(0, 0.6f);
             // ****
-            Application.OpenURL("market://details?id=" + gamesLink[index]);
+            //Application.OpenURL("market://details?id=" + gamesLink[index]);
+            Application.OpenURL("https://colourfulchildren.eu/");
         }
     }
 
@@ -942,6 +951,7 @@ public class UIManager_SM : MonoBehaviour
         {
             canDrag = true;
             positiveDrag = Input.mousePosition.x > lastDragPosition.x;
+            handGuide.SetActive(false);
         }
 
 

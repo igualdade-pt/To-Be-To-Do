@@ -12,6 +12,8 @@ public class MainMenuManager : MonoBehaviour
 
     private GameInstanceScript gameInstance;
 
+    private MusicManagerScript musicManager;
+
     [SerializeField]
     private int indexGameplayScene = 3;
 
@@ -53,21 +55,13 @@ public class MainMenuManager : MonoBehaviour
 
         uiManager_MM.UpdateLanguage(indexLanguage);
 
-        /*if (PlayerPrefs.HasKey("unlockedLevels")) 
-        {
-            Debug.Log("Has Key unlockedLevels, value: " + PlayerPrefs.GetInt("unlockedLevels", 0));
-            uiManager_MM.UpdadeLevelButtons(PlayerPrefs.GetInt("unlockedLevels", 0));
-        }
-        else
-        {
-            uiManager_MM.UpdadeLevelButtons(0);
-        }*/
-        
+        musicManager = FindObjectOfType<MusicManagerScript>().GetComponent<MusicManagerScript>();
     }
 
     public void LoadScene(int indexScene)
     {
         SceneManager.LoadScene(indexScene);
+        musicManager.PlayMusicMenu();
     }
 
     public void LoadAsyncGamePlay()

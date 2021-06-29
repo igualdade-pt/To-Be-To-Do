@@ -59,8 +59,10 @@ MonoBehaviour:
   musicOff: {fileID: -5189443677813156985, guid: 3711cb9eca327d84f9ccfd70f1338e28, type: 2}
   musicLow: {fileID: 1627934241713985707, guid: 3711cb9eca327d84f9ccfd70f1338e28, type: 2}
   musicUp: {fileID: 9119198715906977599, guid: 3711cb9eca327d84f9ccfd70f1338e28, type: 2}
-  fadeTime: 6
-  overlap: 3
+  fadeTime: 8
+  fadeTimeBetweenMusics: 3
+  overlap: 5
+  overlapBetweenMusics: 2
   fadeTimeStopMusic: 2
   fadeTimeResumeMusic: 2
   fadeTimeLowMusic: 1
@@ -75,9 +77,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: baf4f6f6935ce0c44805ebddcd0b20b5, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 0d4b330fd26b72f40b8137b1e921cc15, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8147d74957b711d4fb9f369ae4102480, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.736
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -171,9 +173,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 8440cc08f62f45f4a96287fa065bd0d4, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 0d4b330fd26b72f40b8137b1e921cc15, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8147d74957b711d4fb9f369ae4102480, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.748
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -267,9 +269,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 63d6daadb1a9d274697bdd7cbb7d7b1d, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 06ed14011be96544e96c804da88412f2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 47b9d4cc8a32e734893253897c2784e1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.748
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -363,9 +365,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 6853e096da9aef246a5f0380a95f7b4b, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 06ed14011be96544e96c804da88412f2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 47b9d4cc8a32e734893253897c2784e1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.748
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0

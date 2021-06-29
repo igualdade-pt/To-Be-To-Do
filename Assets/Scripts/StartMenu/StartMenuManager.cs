@@ -11,6 +11,8 @@ public class StartMenuManager : MonoBehaviour
 
     private GameInstanceScript gameInstance;
 
+    private MusicManagerScript musicManager;
+
     private void Start()
     {
         // Attribute Language 
@@ -49,7 +51,9 @@ public class StartMenuManager : MonoBehaviour
 
         uiManager.UpdateLanguage(indexLanguage);
 
+        musicManager = FindObjectOfType<MusicManagerScript>().GetComponent<MusicManagerScript>();
 
+        
     }
 
 
@@ -61,6 +65,7 @@ public class StartMenuManager : MonoBehaviour
 
     public void LoadAsyncScene(int indexScene)
     {
+        musicManager.PlayMusicGame();
         StartCoroutine(StartLoadAsyncScene(indexScene));
     }
 

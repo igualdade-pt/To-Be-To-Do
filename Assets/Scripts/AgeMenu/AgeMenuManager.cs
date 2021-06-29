@@ -12,6 +12,8 @@ public class AgeMenuManager : MonoBehaviour
 
     private GameInstanceScript gameInstance;
 
+    private MusicManagerScript musicManager;
+
     [SerializeField]
     private int indexSceneToLoad;
 
@@ -54,6 +56,7 @@ public class AgeMenuManager : MonoBehaviour
 
         uiManager.UpdateLanguage(indexLanguage);
 
+        musicManager = FindObjectOfType<MusicManagerScript>().GetComponent<MusicManagerScript>();
 
     }
 
@@ -86,6 +89,7 @@ public class AgeMenuManager : MonoBehaviour
         }
         else
         {
+            musicManager.PlayMusicGame();
             SceneManager.LoadScene(indexSceneToLoad);
         }
     }

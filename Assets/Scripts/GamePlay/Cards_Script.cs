@@ -7,12 +7,20 @@ public class Cards_Script : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     [SerializeField]
-    private Sprite[] cardsFaces;
+    private Sprite[] cardsFacesBallet;
+
+    [SerializeField]
+    private Sprite[] cardsFacesOcean;
+
+    [SerializeField]
+    private Sprite[] cardsFacesAlphabet;
 
     [SerializeField]
     private Sprite cardBack;
 
     private int cardIndex;
+
+    private int indexScenario;
 
     private bool canFlip = true;
 
@@ -82,7 +90,22 @@ public class Cards_Script : MonoBehaviour
     {
         if (spriteRenderer.sprite == cardBack) // Turn Face
         {
-            spriteRenderer.sprite = cardsFaces[cardIndex];
+            switch (indexScenario)
+            {
+                case 4:
+                    spriteRenderer.sprite = cardsFacesBallet[cardIndex];
+                    break;
+                case 9:
+                    spriteRenderer.sprite = cardsFacesOcean[cardIndex];
+                    break;
+                case 14:
+                    spriteRenderer.sprite = cardsFacesAlphabet[cardIndex];
+                    break;
+                default:
+                    spriteRenderer.sprite = cardsFacesBallet[cardIndex];
+                    break;
+            }
+            
         }
         else // Turn Back
         {
@@ -94,6 +117,12 @@ public class Cards_Script : MonoBehaviour
     {
         get { return cardIndex; }
         set { cardIndex = value; }
+    }
+
+    public int ScenarioIndex
+    {
+        get { return indexScenario; }
+        set { indexScenario = value; }
     }
 
     public void SetGameplayManager(GameplayManager gm)

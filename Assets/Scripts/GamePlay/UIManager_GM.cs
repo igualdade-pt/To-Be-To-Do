@@ -1,4 +1,5 @@
-﻿using PaintCraft.Tools;
+﻿using NatSuite.Sharing;
+using PaintCraft.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -54,7 +55,7 @@ public class UIManager_GM : MonoBehaviour
         timerRemainText.gameObject.SetActive(false);
         attemptsRemainText.transform.parent.gameObject.SetActive(false);
 
-        StartCoroutine(x());
+        //StartCoroutine(x());
     }
 
     private IEnumerator x()
@@ -180,13 +181,21 @@ public class UIManager_GM : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         // Take screenshot
-        string day = System.DateTime.Now.ToString("dd-MM-yy");
+        /*string day = System.DateTime.Now.ToString("dd-MM-yy");
         string hour = System.DateTime.Now.ToString("HH-mm-ss");
-        ScreenCapture.CaptureScreenshot("screenshot_" + day + "_" + hour + ".png");
+        string nameFile = "screenshot_" + day + "_" + hour + ".png";
+        ScreenCapture.CaptureScreenshot(nameFile);*/
+
+        var screenshot = ScreenCapture.CaptureScreenshotAsTexture();
 
         // Show UI after we're done
         colourPanel.SetActive(true);
         screenShotPanel.SetActive(false);
+
+        // Share
+        new SharePayload()
+            .AddImage(screenshot)
+            .Commit();
     }
 
     public void _PlayButtonSound()

@@ -79,7 +79,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.13, y: 5.12}
+  m_Size: {x: 5.12, y: 5.13}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -102,8 +102,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.13, y: 5.12}
-    newSize: {x: 5.13, y: 5.12}
+    oldSize: {x: 5.12, y: 5.13}
+    newSize: {x: 5.12, y: 5.13}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -141,16 +141,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPiece: 1
   index: 0
-  pieces:
+  piecesMoon:
+  - {fileID: 21300000, guid: f147296fb3e8ae84c84105a5312c4045, type: 3}
+  - {fileID: 21300000, guid: 0f006797be2cd33418ae54fd7055af85, type: 3}
   - {fileID: 21300000, guid: 5c23ce694ac121c4e898e44e5e63eb65, type: 3}
   - {fileID: 21300000, guid: 0f5fa2522a158e54eaa65aee5454658f, type: 3}
-  - {fileID: 21300000, guid: 0f006797be2cd33418ae54fd7055af85, type: 3}
-  - {fileID: 21300000, guid: f147296fb3e8ae84c84105a5312c4045, type: 3}
   - {fileID: 21300000, guid: 1c4d2c17076f9d24cbd122f00ba569c6, type: 3}
   - {fileID: 21300000, guid: ba8218a7f9b0a3a43a01770faeb34764, type: 3}
-  - {fileID: 21300000, guid: 5c23ce694ac121c4e898e44e5e63eb65, type: 3}
-  - {fileID: 21300000, guid: 0f5fa2522a158e54eaa65aee5454658f, type: 3}
-  - {fileID: 21300000, guid: 0f006797be2cd33418ae54fd7055af85, type: 3}
-  - {fileID: 21300000, guid: f147296fb3e8ae84c84105a5312c4045, type: 3}
-  - {fileID: 21300000, guid: 1c4d2c17076f9d24cbd122f00ba569c6, type: 3}
-  - {fileID: 21300000, guid: ba8218a7f9b0a3a43a01770faeb34764, type: 3}
+  piecesHouse:
+  - {fileID: 21300000, guid: e381eb342dc24de42b1d39b7c2808528, type: 3}
+  - {fileID: 21300000, guid: d80e1780699f6624597928385ea0c291, type: 3}
+  - {fileID: 21300000, guid: e56242d939f03924f80e7060f5cb082a, type: 3}
+  - {fileID: 21300000, guid: e3c7e31370b729d4a9ffff1a3ec19725, type: 3}
+  - {fileID: 21300000, guid: 50c458ecefc4023469b1c8b01471fa76, type: 3}
+  - {fileID: 21300000, guid: 37dae9d3872682d4ca0237aff094c7b4, type: 3}
+  piecesGymnastic:
+  - {fileID: 21300000, guid: bdb627c642e300347af0a922da4464fe, type: 3}
+  - {fileID: 21300000, guid: 2df7d48aaec18534fb187303544d9e26, type: 3}
+  - {fileID: 21300000, guid: 444f2d9eb974c704e828ceae85dbbdee, type: 3}
+  - {fileID: 21300000, guid: c5815dc4d7a326a45bfe53c816b83301, type: 3}
+  - {fileID: 21300000, guid: 351dc2e8ee3943241b538ef4688facfb, type: 3}
+  - {fileID: 21300000, guid: 9839dc07c19090d468d562438b42dfd0, type: 3}

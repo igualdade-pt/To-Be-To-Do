@@ -55,6 +55,15 @@ public class GameplayManager : MonoBehaviour
     private GameObject mazeAdventurePool;
 
     [SerializeField]
+    private GameObject mazeAdventure1;
+
+    [SerializeField]
+    private GameObject mazeAdventure2;
+
+    [SerializeField]
+    private GameObject mazeAdventure3;
+
+    [SerializeField]
     private GameObject[] mazeBasic;
 
     [SerializeField]
@@ -82,6 +91,15 @@ public class GameplayManager : MonoBehaviour
 
     [SerializeField]
     private GameObject tapDragAdventurePool;
+
+    [SerializeField]
+    private GameObject tapDragAdventure1;
+
+    [SerializeField]
+    private GameObject tapDragAdventure2;
+
+    [SerializeField]
+    private GameObject tapDragAdventure3;
 
     [SerializeField]
     private GameObject item;
@@ -128,6 +146,15 @@ public class GameplayManager : MonoBehaviour
 
     [SerializeField]
     private GameObject puzzleAdventurePool;
+
+    [SerializeField]
+    private GameObject puzzleAdventure1;
+
+    [SerializeField]
+    private GameObject puzzleAdventure2;
+
+    [SerializeField]
+    private GameObject puzzleAdventure3;
 
     [SerializeField]
     private GameObject puzzlePiece;
@@ -312,16 +339,20 @@ public class GameplayManager : MonoBehaviour
         uiManager_GM = FindObjectOfType<UIManager_GM>().GetComponent<UIManager_GM>();
         audioManager = FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
 
+        musicManager = FindObjectOfType<MusicManagerScript>().GetComponent<MusicManagerScript>();
+
+        musicManager.LowMusic();
+
         // Set Only the Adventure Selected
         switch (indexAdventureSelected)
         {
-            case 0:
+            case 0: case 5: case 10:
                 matchColourAdventurePool.SetActive(true);
                 MatchColourStart();
                 uiManager_GM.SetColourPanel(true);
                 break;
 
-            case 1:
+            case 1: case 6: case 11:
                 switch (indexDifficulty)  // TIMER
                 {
                     case 0:
@@ -354,7 +385,7 @@ public class GameplayManager : MonoBehaviour
                 StartCoroutine(CountdownSec());
                 break;
 
-            case 2:
+            case 2: case 7: case 12:
                 numberOfItems = numberOfItemsByDifficulty[indexDifficulty];
                 numberOfTapDragAttempts = numberOfTapDragAttemptsByDifficulty[indexDifficulty];
                 numberOfRightItems = numberOfRightItemsByDifficulty[indexDifficulty];
@@ -385,6 +416,28 @@ public class GameplayManager : MonoBehaviour
                 uiManager_GM.SetTimerActive(true);
                 uiManager_GM.UpdateTimer(min, sec);
 
+                tapDragAdventure1.SetActive(false);
+                tapDragAdventure2.SetActive(false);
+                tapDragAdventure3.SetActive(false);
+                switch (indexAdventureSelected)
+                {
+                    case 2:
+                        tapDragAdventure1.SetActive(true);
+                        break;
+
+                    case 7:
+                        tapDragAdventure2.SetActive(true);
+                        break;
+
+                    case 12:
+                        tapDragAdventure3.SetActive(true);
+                        break;
+                    default:
+                        tapDragAdventure1.SetActive(true);
+                        break;
+                }             
+                
+
                 tapDragAdventurePool.SetActive(true);
 
                 TapDragStart();
@@ -394,7 +447,7 @@ public class GameplayManager : MonoBehaviour
                 StartCoroutine(CountdownSec());
                 break;
 
-            case 3:
+            case 3: case 8: case 13:
                 numberOfPuzzlePieces = numberOfPiecesByDifficulty[indexDifficulty];
                 numberOfPuzzlePiecesDone = numberOfPuzzlePieces;
                 numberOfPuzzleAttempts = numberOfPuzzleAttemptsByDifficulty[indexDifficulty];
@@ -424,6 +477,28 @@ public class GameplayManager : MonoBehaviour
                 uiManager_GM.SetTimerActive(true);
                 uiManager_GM.UpdateTimer(min, sec);
 
+                puzzleAdventure1.SetActive(false);
+                puzzleAdventure2.SetActive(false);
+                puzzleAdventure3.SetActive(false);
+
+                switch (indexAdventureSelected)
+                {
+                    case 3:
+                        puzzleAdventure1.SetActive(true);
+                        break;
+
+                    case 8:
+                        puzzleAdventure2.SetActive(true);
+                        break;
+
+                    case 13:
+                        puzzleAdventure3.SetActive(true);
+                        break;
+                    default:
+                        tapDragAdventure1.SetActive(true);
+                        break;
+                }
+
                 puzzleAdventurePool.SetActive(true);
 
                 PuzzleStart();
@@ -433,8 +508,8 @@ public class GameplayManager : MonoBehaviour
                 StartCoroutine(CountdownSec());
                 break;
 
-            case 4:
-                numberOfCards = numberOfCardsByDifficulty[indexDifficulty];
+            case 4: case 9: case 14:
+                numberOfCards = numberOfCardsByDifficulty[indexDifficulty]; 
                 numberOfMemoryAttempts = numberOfAttemptsByDifficulty[indexDifficulty];
 
                 uiManager_GM.SetReturnButton(true);
@@ -456,9 +531,7 @@ public class GameplayManager : MonoBehaviour
                 break;
         }
 
-        musicManager = FindObjectOfType<MusicManagerScript>().GetComponent<MusicManagerScript>();
 
-        musicManager.LowMusic();
     }
 
 
@@ -474,6 +547,28 @@ public class GameplayManager : MonoBehaviour
     //MAZE GAME
     private void MazeStart()
     {
+        mazeAdventure1.SetActive(false);
+        mazeAdventure2.SetActive(false);
+        mazeAdventure3.SetActive(false);
+        switch (indexAdventureSelected)
+        {
+            case 1:
+                mazeAdventure1.SetActive(true);
+                break;
+
+            case 6:
+                mazeAdventure2.SetActive(true);
+                break;
+
+            case 11:
+                mazeAdventure3.SetActive(true);
+                break;
+
+            default:
+                mazeAdventure1.SetActive(true);
+                break;
+        }
+
         for (int i = 0; i < mazeBasic.Length; i++)
         {
             mazeBasic[i].SetActive(false);
@@ -487,13 +582,66 @@ public class GameplayManager : MonoBehaviour
         switch (indexDifficulty)
         {
             case 0:
-                mazeBasic[0].SetActive(true);
+                switch (indexAdventureSelected)
+                {
+                    case 1:
+                        mazeBasic[0].SetActive(true);
+                        break;
+
+                    case 6:
+                        mazeBasic[1].SetActive(true);
+                        break;
+
+                    case 11:
+                        mazeBasic[2].SetActive(true);
+                        break;
+
+                    default:
+                        mazeBasic[0].SetActive(true);
+                        break;
+                }                
                 break;
 
             case 1:
-                mazeExpert[0].SetActive(true);
+                switch (indexAdventureSelected)
+                {
+                    case 1:
+                        mazeExpert[0].SetActive(true);
+                        break;
+
+                    case 6:
+                        mazeExpert[1].SetActive(true);
+                        break;
+
+                    case 11:
+                        mazeExpert[2].SetActive(true);
+                        break;
+
+                    default:
+                        mazeExpert[0].SetActive(true);
+                        break;
+                }
                 break;
+
             default:
+                switch (indexDifficulty)
+                {
+                    case 0:
+                        mazeBasic[0].SetActive(true);
+                        break;
+
+                    case 1:
+                        mazeBasic[1].SetActive(true);
+                        break;
+
+                    case 2:
+                        mazeBasic[1].SetActive(true);
+                        break;
+
+                    default:
+                        mazeBasic[0].SetActive(true);
+                        break;
+                }
                 break;
         }
 
@@ -560,11 +708,11 @@ public class GameplayManager : MonoBehaviour
             cardsFace.Remove(x);
         }
 
-        rows = Mathf.CeilToInt(numberOfCards / 3f);
-        cols = 3;
+        rows = Mathf.CeilToInt(numberOfCards / 2f);
+        cols = 2;
 
         int numbersOfCardsCreated = 0;
-        float correctX = 0;
+        float correctX = 0.5f;
         float increaseY = 0;
         if (numberOfCards > 9 && numberOfCards <= 12)
         {
@@ -574,14 +722,14 @@ public class GameplayManager : MonoBehaviour
 
         for (int y = 0; y < rows; y++)
         {
-            if (y == rows - 1)
+           /* if (y == rows - 1)
             {
                 cols = numberOfCards - numbersOfCardsCreated;
                 if (cols % 2 == 0)
                 {
                     correctX = 0.5f;
                 }
-            }
+            }*/
 
             for (int x = 0; x < cols; x++)
             {
@@ -589,6 +737,7 @@ public class GameplayManager : MonoBehaviour
                 Vector3 position = new Vector3((cols / 2 - x - correctX) * multiplierXForMemoryGame, (rows / 2 - y + increaseY) * multiplierYForMemoryGame, 0);
                 var temp = Instantiate(card, position, Quaternion.Euler(-5, 0, 0), cardPool.transform); // FIX ROTATION
                 numbersOfCardsCreated++;
+                temp.GetComponent<Cards_Script>().ScenarioIndex = indexAdventureSelected;
                 temp.GetComponent<Cards_Script>().CardIndex = cardIndexes[randomIndex];
                 temp.GetComponent<Cards_Script>().SetGameplayManager(this);
                 temp.GetComponent<Cards_Script>().FlipCards(false);
@@ -765,7 +914,7 @@ public class GameplayManager : MonoBehaviour
                 var temp = Instantiate(puzzlePiece, position, Quaternion.identity, puzzlePiecePool.transform);
                 numbersOfPiecesCreated++;
                 temp.GetComponent<Puzzle_Script>().Index = puzzlePiecesIndexes[randomIndex];
-                temp.GetComponent<Puzzle_Script>().SetSprite();
+                temp.GetComponent<Puzzle_Script>().SetSprite(indexAdventureSelected);
                 if (numberOfPuzzlePieces <= 9)
                 {
                     temp.GetComponent<Transform>().localScale = temp.GetComponent<Transform>().localScale * scaleMultiplierUnder9;
@@ -884,7 +1033,7 @@ public class GameplayManager : MonoBehaviour
                 var temp = Instantiate(item, position, Quaternion.identity, itemPool.transform);
                 numbersOfPiecesCreated++;
                 temp.transform.GetChild(0).GetComponent<TapDrag_Script>().Index = itemsIndexes[randomIndex];
-                temp.transform.GetChild(0).GetComponent<TapDrag_Script>().SetSprite();
+                temp.transform.GetChild(0).GetComponent<TapDrag_Script>().SetSprite(indexAdventureSelected);
                 itemsIndexes.Remove(itemsIndexes[randomIndex]);
             }
         }

@@ -13,17 +13,38 @@ public class Puzzle_Script : MonoBehaviour
     private bool empty = true;
 
     [SerializeField]
-    private Sprite [] pieces;
+    private Sprite [] piecesMoon;
+
+    [SerializeField]
+    private Sprite[] piecesHouse;
+
+    [SerializeField]
+    private Sprite[] piecesGymnastic;
 
     private void Start()
     {
         empty = true;
     }
 
-    public void SetSprite()
+    public void SetSprite(int indexScenario)
     {
-        gameObject.GetComponent<SpriteRenderer>().sprite = pieces[index];
+        switch (indexScenario)
+        {
+            case 13:
+                gameObject.GetComponent<SpriteRenderer>().sprite = piecesMoon[index];
+                break;
+            case 3:
+                gameObject.GetComponent<SpriteRenderer>().sprite = piecesHouse[index];
+                break;
+            case 8:
+                gameObject.GetComponent<SpriteRenderer>().sprite = piecesGymnastic[index];
+                break;
+            default:
+                gameObject.GetComponent<SpriteRenderer>().sprite = piecesMoon[index];
+                break;
+        }
     }
+
 
     public bool IsPiece
     {

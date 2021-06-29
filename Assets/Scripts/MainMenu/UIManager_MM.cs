@@ -34,13 +34,18 @@ public class UIManager_MM : MonoBehaviour
     private Sprite[] clothesSelectedSprite;
 
     [SerializeField]
-    private Image characterImage;
+    private Image characterFImage;
+    [SerializeField]
+    private Image characterMImage;
 
     [SerializeField]
     private Image [] companionImage;
 
     [SerializeField]
-    private Sprite[] characterSprite;
+    private Sprite[] characterFSprite;
+
+    [SerializeField]
+    private Sprite[] characterMSprite;
 
     [SerializeField]
     private Sprite[] companionSprite;
@@ -158,7 +163,14 @@ public class UIManager_MM : MonoBehaviour
                 superPowerCanvas.SetActive(false);
                 companionCanvas.SetActive(true);
                 clothesCanvas.SetActive(false);
-            }            
+            }
+            else if (superPowerCanvas.activeSelf)
+            {
+                adventureCanvas.SetActive(true);
+                superPowerCanvas.SetActive(false);
+                companionCanvas.SetActive(false);
+                clothesCanvas.SetActive(false);
+            }
         }
     }
 
@@ -311,7 +323,8 @@ public class UIManager_MM : MonoBehaviour
 
         if (clothesIndexSelected == adventureIndexSelected)
         {
-            characterImage.sprite = characterSprite[clothesIndexSelected];
+            characterFImage.sprite = characterFSprite[clothesIndexSelected];
+            characterMImage.sprite = characterMSprite[clothesIndexSelected];
             if (companionIndexSelected < 2)
             {
                 companionImage[0].sprite = companionSprite[companionIndexSelected];
@@ -324,7 +337,8 @@ public class UIManager_MM : MonoBehaviour
             }
             else
             {
-                characterImage.transform.localPosition = new Vector3(0, characterImage.transform.localPosition.y, characterImage.transform.localPosition.z);
+                characterFImage.transform.localPosition = new Vector3(-200, characterFImage.transform.localPosition.y, characterFImage.transform.localPosition.z);
+                characterMImage.transform.localPosition = new Vector3(200, characterMImage.transform.localPosition.y, characterMImage.transform.localPosition.z);
             }
             
 

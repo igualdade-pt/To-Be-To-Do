@@ -140,22 +140,32 @@ public class Player_Script : MonoBehaviour
         switch (indexAdventureSelected)
         {
             case 0:
+            case 5:
+            case 10:
                 //MatchColorGameUpdate();
                 break;
 
             case 1:
+            case 6:
+            case 11:
                 MazeGameUpdate();
                 break;
 
             case 2:
+            case 7:
+            case 12:
                 TagDragGameUpdate();
                 break;
 
             case 3:
+            case 8:
+            case 13:
                 PuzzleGameUpdate();
                 break;
 
             case 4:
+            case 9:
+            case 14:
                 MemoryGameUpdate();
                 break;
 
@@ -276,7 +286,7 @@ public class Player_Script : MonoBehaviour
                                     currentLineRenderer = null;
 
                                 }
-                            }
+                              }
                             else
                             {
                                 PointToMousePos();
@@ -347,7 +357,6 @@ public class Player_Script : MonoBehaviour
                                 // Lost
                                 currentLineRenderer.gameObject.SetActive(false);
                                 currentLineRenderer = null;
-
                             }
                         }
                         else

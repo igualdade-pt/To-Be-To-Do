@@ -70,22 +70,26 @@ public class MusicManagerScript : MonoBehaviour
     private bool loopMenuMusic = false;
     private float clipTime;
 
+    private bool gameMusic;
+
+    private bool menuMusic;
+
 
     void Start()
     {
         m_audio1 = GetComponents<AudioSource>()[0];
         m_audio2 = GetComponents<AudioSource>()[1];
-/*        m_audio3 = GetComponents<AudioSource>()[2];
-        m_audio4 = GetComponents<AudioSource>()[3];*/
-        m_audio = new AudioSource[] { m_audio1, m_audio2/*, m_audio3, m_audio4*/ };
+        m_audio3 = GetComponents<AudioSource>()[2];
+        m_audio4 = GetComponents<AudioSource>()[3];
+        m_audio = new AudioSource[] { m_audio1, m_audio2, m_audio3, m_audio4 };
 
         p1off.TransitionTo(0);
         p2off.TransitionTo(0);
-        /*        p3off.TransitionTo(0);
-                p4off.TransitionTo(0);*/
+        p3off.TransitionTo(0);
+        p4off.TransitionTo(0);
 
 
-        StartCoroutine(PlayNextMusic());
+        PlayMusicMenu();
     }
 
     private IEnumerator PlayNextMusic()
@@ -111,12 +115,13 @@ public class MusicManagerScript : MonoBehaviour
                 nextPlayer.Play();
                 clipTime = nextPlayer.clip.length;
                 break;
-/*            case 2:
+            case 2:
                 nextPlayer = m_audio[2];
                 //Fade
                 p3on.TransitionTo(fadeTime);
                 //PlayMusic
                 nextPlayer.Play();
+                clipTime = nextPlayer.clip.length;
                 break;
             case 3:
                 nextPlayer = m_audio[3];
@@ -124,7 +129,8 @@ public class MusicManagerScript : MonoBehaviour
                 p4on.TransitionTo(fadeTime);
                 //PlayMusic
                 nextPlayer.Play();
-                break;*/
+                clipTime = nextPlayer.clip.length;
+                break;
         }
 
 
@@ -136,20 +142,20 @@ public class MusicManagerScript : MonoBehaviour
         {
             case 0:
                 p1off.TransitionTo(fadeTime);
-                nextPlayer = m_audio[0];
+                //nextPlayer = m_audio[0];
                 break;
             case 1:
                 p2off.TransitionTo(fadeTime);
-                nextPlayer = m_audio[1];
+                //nextPlayer = m_audio[1];
                 break;
-           /* case 2:
+            case 2:
                 p3off.TransitionTo(fadeTime);
-                nextPlayer = m_audio[2];
+                //nextPlayer = m_audio[2];
                 break;
             case 3:
                 p4off.TransitionTo(fadeTime);
-                nextPlayer = m_audio[3];
-                break;*/
+                //nextPlayer = m_audio[3];
+                break;
         }
 
 
@@ -168,7 +174,7 @@ public class MusicManagerScript : MonoBehaviour
                 //PlayMusic
                 nextPlayer.Stop();
                 break;
-/*            case 2:
+            case 2:
                 nextPlayer = m_audio[2];
                 //PlayMusic
                 nextPlayer.Stop();
@@ -177,38 +183,64 @@ public class MusicManagerScript : MonoBehaviour
                 nextPlayer = m_audio[3];
                 //PlayMusic
                 nextPlayer.Stop();
-                break;*/
+                break;
         }
 
-        yield return new WaitForSeconds(clipTime - fadeTime*2 - overlap);
+        yield return new WaitForSeconds(clipTime - fadeTime * 2 - overlap);
 
         PlayMusic(previousClipIndex++);
 
-        Debug.Log(" Next" );
+        Debug.Log(" Next");
     }
 
-    public void PlayMusic(int musicIdex)
+    private void PlayMusic(int musicIndex)
     {
         previousClipIndex = nextClipIndex;
-        if (musicIdex > 1)
+        if (menuMusic)
         {
-            nextClipIndex = 0;
+            if (musicIndex > 1)
+            {
+                nextClipIndex = 0;
+            }
+            nextClipIndex = Mathf.Clamp(musicIndex, 0, 1);
+            Debug.Log(nextClipIndex);
         }
-        nextClipIndex = Mathf.Clamp(musicIdex, 0, 1);
-        Debug.Log(nextClipIndex);
+        else if (gameMusic)
+        {
+            if (musicIndex > 3)
+            {
+                nextClipIndex = 2;
+            }
+            nextClipIndex = Mathf.Clamp(musicIndex, 2, 3);
+            Debug.Log(nextClipIndex);
+        }
         StartCoroutine(PlayNextMusic());
+    }
+
+    public void PlayMusicGame()
+    {
+        menuMusic = false;
+        gameMusic = true;
+        PlayMusic(2);
+    }
+
+    public void PlayMusicMenu()
+    {
+        gameMusic = false;
+        menuMusic = true;
+        PlayMusic(0);
     }
 
     public void StopMusic()
     {
-        StartCoroutine(StopMusicByFade());     
+        StartCoroutine(StopMusicByFade());
     }
 
     private IEnumerator StopMusicByFade()
     {
         AudioSource nextPlayer;
-        
-       musicOff.TransitionTo(fadeTimeStopMusic);
+
+        musicOff.TransitionTo(fadeTimeStopMusic);
         Debug.Log(fadeTimeStopMusic);
 
         yield return new WaitForSeconds(fadeTimeStopMusic);
@@ -233,21 +265,6 @@ public class MusicManagerScript : MonoBehaviour
         }
 
         /*StartCoroutine(ResumeMusicByFade());*/
-    }
-
-    private IEnumerator ResumeMusicByFade()
-    {
-        AudioSource nextPlayer;
-
-        musicOn.TransitionTo(fadeTimeResumeMusic);
-
-        for (int i = 0; i < 2; i++)
-        {
-            nextPlayer = m_audio[i];
-            nextPlayer.UnPause();
-        }
-
-        yield return null;
     }
 
     public void LowMusic()

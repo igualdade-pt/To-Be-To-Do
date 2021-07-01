@@ -13,34 +13,72 @@ public class Puzzle_Script : MonoBehaviour
     private bool empty = true;
 
     [SerializeField]
-    private Sprite [] piecesMoon;
+    private Sprite[] piecesMoonB;
 
     [SerializeField]
-    private Sprite[] piecesHouse;
+    private Sprite[] piecesMoonE;
 
     [SerializeField]
-    private Sprite[] piecesGymnastic;
+    private Sprite[] piecesHouseB;
+
+    [SerializeField]
+    private Sprite[] piecesHouseE;
+
+    [SerializeField]
+    private Sprite[] piecesGymnasticB;
+
+    [SerializeField]
+    private Sprite[] piecesGymnasticE;
 
     private void Start()
     {
         empty = true;
     }
 
-    public void SetSprite(int indexScenario)
+    public void SetSprite(int indexScenario, int indexDificulty)
     {
         switch (indexScenario)
         {
             case 13:
-                gameObject.GetComponent<SpriteRenderer>().sprite = piecesMoon[index];
+                if (indexDificulty == 0)
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = piecesMoonB[index];
+                }
+                else
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = piecesMoonE[index];
+                }
+
                 break;
             case 3:
-                gameObject.GetComponent<SpriteRenderer>().sprite = piecesHouse[index];
+                if (indexDificulty == 0)
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = piecesHouseB[index];
+                }
+                else
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = piecesHouseE[index];
+                }
                 break;
             case 8:
-                gameObject.GetComponent<SpriteRenderer>().sprite = piecesGymnastic[index];
+                if (indexDificulty == 0)
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = piecesGymnasticB[index];
+                }
+                else
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = piecesGymnasticE[index];
+                }
                 break;
             default:
-                gameObject.GetComponent<SpriteRenderer>().sprite = piecesMoon[index];
+                if (indexDificulty == 0)
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = piecesMoonB[index];
+                }
+                else
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = piecesMoonE[index];
+                }
                 break;
         }
     }

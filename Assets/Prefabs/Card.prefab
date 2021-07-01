@@ -146,13 +146,19 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 049d9d4c6a4208d458982d0af17096e9, type: 3}
   - {fileID: 21300000, guid: 871c8d99c95df4947bac1e016db855a5, type: 3}
   - {fileID: 21300000, guid: 395cf581bb57b6d4fac478c908ab4ac1, type: 3}
+  - {fileID: 21300000, guid: dc8920c506d83344dbb1185195eb0376, type: 3}
+  - {fileID: 21300000, guid: 47604dc76e41bb44fb16bf225b6adf15, type: 3}
   cardsFacesOcean:
   - {fileID: 21300000, guid: d1ec885e8c44b2a4b916a09e3505ba46, type: 3}
   - {fileID: 21300000, guid: 926e724d39b04c640b2584cda076b9bf, type: 3}
   - {fileID: 21300000, guid: c9379ae4d496c0540a81cf267e35ba94, type: 3}
+  - {fileID: 21300000, guid: aaf15a45f1bfb324893b7d1c1391090f, type: 3}
+  - {fileID: 21300000, guid: 9805e5dfba2416748a7f7b95edbf25e1, type: 3}
   cardsFacesAlphabet:
   - {fileID: 21300000, guid: dc59dc9392634a84ba612e185837b105, type: 3}
   - {fileID: 21300000, guid: 0749a719fc3a80643b03254ddaee394f, type: 3}
   - {fileID: 21300000, guid: 57dcc75591a1f054ab9402bf421311e5, type: 3}
+  - {fileID: 21300000, guid: 258cf4fac0075bd438f3a469c2223f66, type: 3}
+  - {fileID: 21300000, guid: 632cb389964d6bb4c8f5a205f53a9dc1, type: 3}
   cardBack: {fileID: 21300000, guid: 4a551f08394a7af4eadcd9488d3bd728, type: 3}
   myAnimator: {fileID: 5729260909959280006}

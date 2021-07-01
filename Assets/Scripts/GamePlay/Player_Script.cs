@@ -464,7 +464,7 @@ public class Player_Script : MonoBehaviour
                         else if (touch.phase == TouchPhase.Ended && pieceSelected != null)
                         {
                             var ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                            RaycastHit2D hit = Physics2D.Raycast(ray, ray);
+                            RaycastHit2D hit = Physics2D.Linecast(ray, ray);
 
                             if (hit.collider != null)
                             {
@@ -519,7 +519,7 @@ public class Player_Script : MonoBehaviour
                     else if (Input.GetMouseButtonUp(0) && pieceSelected != null) // MOUSE BUTTON ENDED
                     {
                         var ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                        RaycastHit2D hit = Physics2D.Raycast(ray, ray);
+                        RaycastHit2D hit = Physics2D.Linecast(ray, ray);
 
                         if (hit.collider != null)
                         {
@@ -585,7 +585,7 @@ public class Player_Script : MonoBehaviour
                         else if (touch.phase == TouchPhase.Ended && pieceSelected != null)
                         {
                             var ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                            RaycastHit2D hit = Physics2D.Raycast(ray, ray);
+                            RaycastHit2D hit = Physics2D.Linecast(ray, ray);
 
                             if (hit.collider != null)
                             {
@@ -643,7 +643,7 @@ public class Player_Script : MonoBehaviour
                     else if (Input.GetMouseButtonUp(0) && pieceSelected != null) // MOUSE BUTTON ENDED
                     {
                         var ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                        RaycastHit2D hit = Physics2D.Raycast(ray, ray);
+                        RaycastHit2D hit = Physics2D.Linecast(ray, ray);
 
                         if (hit.collider != null)
                         {

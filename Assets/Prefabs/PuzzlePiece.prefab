@@ -74,15 +74,15 @@ SpriteRenderer:
   m_SortingLayerID: 152500827
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 964aac796fcd7e9488695d42e73ac9ce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.12, y: 5.13}
+  m_Size: {x: 3.93, y: 3.93}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &4044023772092647490
@@ -102,14 +102,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.13}
-    newSize: {x: 5.12, y: 5.13}
+    oldSize: {x: 3.93, y: 3.93}
+    newSize: {x: 3.93, y: 3.93}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.32, y: 2.14}
+  m_Size: {x: 1.5, y: 1.5}
   m_EdgeRadius: 0
 --- !u!58 &8823055795730155010
 CircleCollider2D:
@@ -141,24 +141,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPiece: 1
   index: 0
-  piecesMoon:
+  piecesMoonB:
   - {fileID: 21300000, guid: f147296fb3e8ae84c84105a5312c4045, type: 3}
   - {fileID: 21300000, guid: 0f006797be2cd33418ae54fd7055af85, type: 3}
   - {fileID: 21300000, guid: 5c23ce694ac121c4e898e44e5e63eb65, type: 3}
   - {fileID: 21300000, guid: 0f5fa2522a158e54eaa65aee5454658f, type: 3}
   - {fileID: 21300000, guid: 1c4d2c17076f9d24cbd122f00ba569c6, type: 3}
   - {fileID: 21300000, guid: ba8218a7f9b0a3a43a01770faeb34764, type: 3}
-  piecesHouse:
+  piecesMoonE:
+  - {fileID: 21300000, guid: 32e24b021f95be94db8f87e3c54065f3, type: 3}
+  - {fileID: 21300000, guid: 1d18f2ff1a1290b439b5999008cb0a09, type: 3}
+  - {fileID: 21300000, guid: e5b5e190daf320641afc711c5050bf61, type: 3}
+  - {fileID: 21300000, guid: 572af2682d541444bade3fef20c03f44, type: 3}
+  - {fileID: 21300000, guid: b94be4f20f5a568429aee577f2dbdff3, type: 3}
+  - {fileID: 21300000, guid: 4a41fa7c356f9914684aa5bf06cadc15, type: 3}
+  - {fileID: 21300000, guid: 201ea110c420fda47afdb8ab050758eb, type: 3}
+  - {fileID: 21300000, guid: 4d1bc9257066dd14d96ff905d4626243, type: 3}
+  - {fileID: 21300000, guid: d49950dd25cf54e4ab51595e08edd9f7, type: 3}
+  - {fileID: 21300000, guid: c2370b890e17c2a41b36e97a06aba134, type: 3}
+  - {fileID: 21300000, guid: 905832ce1754d734fb37f4367a173284, type: 3}
+  - {fileID: 21300000, guid: 011c9d09283442847bf4c13a9111a80b, type: 3}
+  piecesHouseB:
   - {fileID: 21300000, guid: e381eb342dc24de42b1d39b7c2808528, type: 3}
   - {fileID: 21300000, guid: d80e1780699f6624597928385ea0c291, type: 3}
   - {fileID: 21300000, guid: e56242d939f03924f80e7060f5cb082a, type: 3}
   - {fileID: 21300000, guid: e3c7e31370b729d4a9ffff1a3ec19725, type: 3}
   - {fileID: 21300000, guid: 50c458ecefc4023469b1c8b01471fa76, type: 3}
   - {fileID: 21300000, guid: 37dae9d3872682d4ca0237aff094c7b4, type: 3}
-  piecesGymnastic:
+  piecesHouseE:
+  - {fileID: 21300000, guid: 63c88e79378d07b429ee14fcc5902b47, type: 3}
+  - {fileID: 21300000, guid: eab1f84701595c84e8106e0e5825811e, type: 3}
+  - {fileID: 21300000, guid: cbd02719891f2f84c970dd87ded6186d, type: 3}
+  - {fileID: 21300000, guid: ef29aa5ea299da24f9c780d855a89314, type: 3}
+  - {fileID: 21300000, guid: 755706f5f02d621468ccd8ec5ce69cdb, type: 3}
+  - {fileID: 21300000, guid: b9e0bfa9ba22fd64ab8fed4f579bf1ff, type: 3}
+  - {fileID: 21300000, guid: a6c6129cbf97eec4abb73309fed14f08, type: 3}
+  - {fileID: 21300000, guid: 9bfcc7b3c1a021d47b5753815287c4ff, type: 3}
+  - {fileID: 21300000, guid: e7a3a993c697d504682a60ea3d42b075, type: 3}
+  - {fileID: 21300000, guid: d6369a86ec8ec084ba8e651374f7801b, type: 3}
+  - {fileID: 21300000, guid: fe72898c88afe434b87c53d00f5bdaf8, type: 3}
+  - {fileID: 21300000, guid: 5dbb08df8c3326f498f3116af97a031e, type: 3}
+  piecesGymnasticB:
   - {fileID: 21300000, guid: bdb627c642e300347af0a922da4464fe, type: 3}
   - {fileID: 21300000, guid: 2df7d48aaec18534fb187303544d9e26, type: 3}
   - {fileID: 21300000, guid: 444f2d9eb974c704e828ceae85dbbdee, type: 3}
   - {fileID: 21300000, guid: c5815dc4d7a326a45bfe53c816b83301, type: 3}
   - {fileID: 21300000, guid: 351dc2e8ee3943241b538ef4688facfb, type: 3}
   - {fileID: 21300000, guid: 9839dc07c19090d468d562438b42dfd0, type: 3}
+  piecesGymnasticE:
+  - {fileID: 21300000, guid: 2a5ed4cdd9d0d8c44bd99cf8304cb39a, type: 3}
+  - {fileID: 21300000, guid: e1a4081e2368ad4458ef576b2e4eb687, type: 3}
+  - {fileID: 21300000, guid: 2b94178a216e7f44f8dbf3b27cd89364, type: 3}
+  - {fileID: 21300000, guid: 96e85014311958845964ecc1f229833e, type: 3}
+  - {fileID: 21300000, guid: 05529020025226947afabaf3327e41ac, type: 3}
+  - {fileID: 21300000, guid: a8810dc1b73e3b4408ff86446d7e1783, type: 3}
+  - {fileID: 21300000, guid: 26682b33491ba174587543d07021c482, type: 3}
+  - {fileID: 21300000, guid: 3d04903290ed70346929256651bec0c9, type: 3}
+  - {fileID: 21300000, guid: 7db01208e6ff43c4f9816dc7d36f7a5f, type: 3}
+  - {fileID: 21300000, guid: 964aac796fcd7e9488695d42e73ac9ce, type: 3}
+  - {fileID: 21300000, guid: 6673a2ae9df6c8545a3113a1c6064acb, type: 3}
+  - {fileID: 21300000, guid: 541b232517d357248929420e1e33f4b3, type: 3}

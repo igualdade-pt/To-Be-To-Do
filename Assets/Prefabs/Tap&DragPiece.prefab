@@ -137,6 +137,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cfd3de06d6081b843aaeaea7583984c4, type: 3}
   - {fileID: 21300000, guid: f5b4614a45dda8b489d4b1c848cd6b1c, type: 3}
   - {fileID: 21300000, guid: a093f083f7e7917488c63c50827240c5, type: 3}
+  - {fileID: 21300000, guid: 4b3d3dd32b086f24c964c9418384ecca, type: 3}
   itemsDog:
   - {fileID: 21300000, guid: ab610e88134ece542b3b30753a5033c9, type: 3}
   - {fileID: 21300000, guid: bbf00ea392e050644b256b57a85c264a, type: 3}
@@ -152,6 +153,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f8ac2d7300e421c43b6360ebe75736f9, type: 3}
   - {fileID: 21300000, guid: cfd3de06d6081b843aaeaea7583984c4, type: 3}
   - {fileID: 21300000, guid: a093f083f7e7917488c63c50827240c5, type: 3}
+  - {fileID: 21300000, guid: 4b3d3dd32b086f24c964c9418384ecca, type: 3}
   itemsDrums:
   - {fileID: 21300000, guid: 089bd0de75dab94498dc4e98e076c08c, type: 3}
   - {fileID: 21300000, guid: f8ac2d7300e421c43b6360ebe75736f9, type: 3}
@@ -167,6 +169,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a981ea22152bd7c49a78de5e07dfc1cb, type: 3}
   - {fileID: 21300000, guid: ed5bc283cb9134746bf834d3d082ef2e, type: 3}
   - {fileID: 21300000, guid: 9c6a4669692a73143ac3edf5a20c6e5f, type: 3}
+  - {fileID: 21300000, guid: 4b3d3dd32b086f24c964c9418384ecca, type: 3}
 --- !u!1 &6376256492369872014
 GameObject:
   m_ObjectHideFlags: 0

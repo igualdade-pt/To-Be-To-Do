@@ -12,6 +12,7 @@ TagManager:
   - PuzzlePiece
   - TapDragPiece
   - Cards
+  - PathMaze
   layers:
   - Default
   - TransparentFX

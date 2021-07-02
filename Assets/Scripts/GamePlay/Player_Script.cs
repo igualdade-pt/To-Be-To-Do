@@ -291,6 +291,7 @@ public class Player_Script : MonoBehaviour
                             {
                                 PointToMousePos();
                             }
+
                         }
                         else if (touch.phase == TouchPhase.Ended && currentLineRenderer != null)
                         {
@@ -298,17 +299,22 @@ public class Player_Script : MonoBehaviour
 
                             RaycastHit2D hit = Physics2D.Linecast(ray, ray);
                             Debug.DrawLine(ray, ray, Color.red);
-
                             if (hit.collider != null)
                             {
                                 if (hit.collider.tag != "MazeEnd")
                                 {
+                                    gameplayManager.CheckMazeLossCondition();
+                                    // Lost
                                     currentLineRenderer.gameObject.SetActive(false);
+                                    currentLineRenderer = null;
                                 }
                             }
                             else
                             {
                                 gameplayManager.CheckMazeLossCondition();
+                                // Lost
+                                currentLineRenderer.gameObject.SetActive(false);
+                                currentLineRenderer = null;
                             }
                             currentLineRenderer = null;
                         }
@@ -376,11 +382,15 @@ public class Player_Script : MonoBehaviour
                             if (hit.collider.tag != "MazeEnd")
                             {
                                 currentLineRenderer.gameObject.SetActive(false);
+                                currentLineRenderer = null;
                             }
                         }
                         else
                         {
                             gameplayManager.CheckMazeLossCondition();
+                            // Lost
+                            currentLineRenderer.gameObject.SetActive(false);
+                            currentLineRenderer = null;
                         }
                         currentLineRenderer = null;
                     }

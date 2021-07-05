@@ -2725,11 +2725,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e7899b30b2841804f857fb8956d381b0, type: 3}
   - {fileID: 21300000, guid: 97c0de943e3450d44bae36e342b8d0f1, type: 3}
   xPages:
-  - -1600
-  - -800
+  - -1800
+  - -900
   - 0
-  - 800
-  - 1600
+  - 900
+  - 1800
   easeType: 3
   curve:
     serializedVersion: 2
@@ -5635,7 +5635,7 @@ GameObject:
   - component: {fileID: 1158448119}
   - component: {fileID: 1158448118}
   m_Layer: 5
-  m_Name: ButtonPT
+  m_Name: ButtonES
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5735,7 +5735,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2fdefce7f48a0b34f8331730809ae496, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 43fa5851014a35c4584a0f8575843d3c, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -6764,7 +6764,7 @@ GameObject:
   - component: {fileID: 1306752534}
   - component: {fileID: 1306752533}
   m_Layer: 5
-  m_Name: ButtonIT
+  m_Name: ButtonPT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6864,7 +6864,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7587617690e9145409a751f8dc6f42d9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dfd2a5300a44e7d418c33acc2c2b9ea7, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

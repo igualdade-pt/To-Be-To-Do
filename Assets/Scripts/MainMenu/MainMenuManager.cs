@@ -17,6 +17,8 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     private int indexGameplayScene = 3;
 
+    private float timeToLoad = 5f;
+
     private void Start()
     {
         gameInstance = FindObjectOfType<GameInstanceScript>().GetComponent<GameInstanceScript>();
@@ -60,19 +62,22 @@ public class MainMenuManager : MonoBehaviour
 
     public void LoadScene(int indexScene)
     {
-        SceneManager.LoadScene(indexScene);
+        //SceneManager.LoadScene(indexScene);
+        timeToLoad = 1f;
+        StartCoroutine(StartLoadAsyncScene(indexScene));
         musicManager.PlayMusicMenu();
     }
 
     public void LoadAsyncGamePlay()
     {
         //gameInstance.LevelIndex = indexLevel;
+        timeToLoad = 5f;
         StartCoroutine(StartLoadAsyncScene(indexGameplayScene));
     }
 
     private IEnumerator StartLoadAsyncScene(int indexScene)
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(timeToLoad);
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(indexScene);
 

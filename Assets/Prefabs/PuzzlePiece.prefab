@@ -165,9 +165,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e381eb342dc24de42b1d39b7c2808528, type: 3}
   - {fileID: 21300000, guid: d80e1780699f6624597928385ea0c291, type: 3}
   - {fileID: 21300000, guid: e56242d939f03924f80e7060f5cb082a, type: 3}
-  - {fileID: 21300000, guid: e3c7e31370b729d4a9ffff1a3ec19725, type: 3}
-  - {fileID: 21300000, guid: 50c458ecefc4023469b1c8b01471fa76, type: 3}
   - {fileID: 21300000, guid: 37dae9d3872682d4ca0237aff094c7b4, type: 3}
+  - {fileID: 21300000, guid: 50c458ecefc4023469b1c8b01471fa76, type: 3}
+  - {fileID: 21300000, guid: e3c7e31370b729d4a9ffff1a3ec19725, type: 3}
   piecesHouseE:
   - {fileID: 21300000, guid: 63c88e79378d07b429ee14fcc5902b47, type: 3}
   - {fileID: 21300000, guid: eab1f84701595c84e8106e0e5825811e, type: 3}

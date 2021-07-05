@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using PaintCraft.Canvas;
+using PaintCraft.Canvas.Configs;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Runtime.CompilerServices;
@@ -44,6 +46,28 @@ public class GameplayManager : MonoBehaviour
 
     [SerializeField]
     private GameObject matchColourAdventurePool;
+
+    [SerializeField] 
+    private ScriptableObject pagePaintBasic;
+
+    [SerializeField]
+    private ScriptableObject pageMountainBasic;
+
+    [SerializeField]
+    private ScriptableObject pageBallBasic;
+
+
+    [SerializeField]
+    private ScriptableObject pagePaintExpert;
+
+    [SerializeField]
+    private ScriptableObject pageMountainExpert;
+
+    [SerializeField]
+    private ScriptableObject pageBallExpert;
+
+    private IPageConfig pageConfig;
+
 
     // ***************************************************************************************** //
 
@@ -356,8 +380,9 @@ public class GameplayManager : MonoBehaviour
         switch (indexAdventureSelected)
         {
             case 0: case 5: case 10:
-                matchColourAdventurePool.SetActive(true);
                 MatchColourStart();
+                matchColourAdventurePool.SetActive(true);
+
                 uiManager_GM.SetColourPanel(true);
                 break;
 
@@ -575,6 +600,54 @@ public class GameplayManager : MonoBehaviour
     private void MatchColourStart()
     {
 
+        if (indexDifficulty == 0)
+        {
+            switch (indexAdventureSelected)
+            {
+                case 0:
+                    pageConfig = pageBallBasic as IPageConfig;
+                    AppData.SelectedPageConfig = pageConfig;
+                    break;
+
+                case 5:
+                    pageConfig = pagePaintBasic as IPageConfig;
+                    AppData.SelectedPageConfig = pageConfig;
+                    break;
+
+                case 10:
+                    pageConfig = pageMountainBasic as IPageConfig;
+                    AppData.SelectedPageConfig = pageConfig;
+                    break;
+                default:
+                    pageConfig = pageBallBasic as IPageConfig;
+                    AppData.SelectedPageConfig = pageConfig;
+                    break;
+            }
+        }
+        else
+        {
+            switch (indexAdventureSelected)
+            {
+                case 0:
+                    pageConfig = pageBallExpert as IPageConfig;
+                    AppData.SelectedPageConfig = pageConfig;
+                    break;
+
+                case 5:
+                    pageConfig = pagePaintExpert as IPageConfig;
+                    AppData.SelectedPageConfig = pageConfig;
+                    break;
+
+                case 10:
+                    pageConfig = pageMountainExpert as IPageConfig;
+                    AppData.SelectedPageConfig = pageConfig;
+                    break;
+                default:
+                    pageConfig = pageBallExpert as IPageConfig;
+                    AppData.SelectedPageConfig = pageConfig;
+                    break;
+            }
+        }
     }
 
     // ******************************************************
@@ -713,7 +786,7 @@ public class GameplayManager : MonoBehaviour
         if (numberOfMazeAttempts > 0)
         {
             // Play Sound
-            audioManager.PlayClip(indexSoundWon, 0.6f);
+            audioManager.PlayClip(indexSoundWon, 0.8f);
             // ****
             StopAllCoroutines();
             GameEnded();
@@ -851,7 +924,7 @@ public class GameplayManager : MonoBehaviour
             if (numberOfCards == numberOfRightPairs * 2)
             {
                 // Play Sound
-                audioManager.PlayClip(indexSoundWon, 0.6f);
+                audioManager.PlayClip(indexSoundWon, 0.8f);
                 // ****
                 GameEnded();
             }
@@ -986,7 +1059,7 @@ public class GameplayManager : MonoBehaviour
             if (numberOfPuzzlePiecesDone <= 0)
             {
                 // Play Sound
-                audioManager.PlayClip(indexSoundWon, 0.6f);
+                audioManager.PlayClip(indexSoundWon, 0.8f);
                 // ****
                 StopAllCoroutines();
                 GameEnded();                
@@ -1099,7 +1172,7 @@ public class GameplayManager : MonoBehaviour
             if (numberOfRightItems <= 0)
             {
                 // Play Sound
-                audioManager.PlayClip(indexSoundWon, 0.6f);
+                audioManager.PlayClip(indexSoundWon, 0.8f);
                 // ****
                 StopAllCoroutines();
                 GameEnded();

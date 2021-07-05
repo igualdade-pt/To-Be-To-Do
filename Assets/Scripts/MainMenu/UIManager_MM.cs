@@ -25,6 +25,9 @@ public class UIManager_MM : MonoBehaviour
     private GameObject loadingCanvas;
 
     [SerializeField]
+    private GameObject loading1Canvas;
+
+    [SerializeField]
     private GameObject clothesSelectedCanvas;
 
     [SerializeField]
@@ -70,6 +73,51 @@ public class UIManager_MM : MonoBehaviour
     [SerializeField]
     private Text textClothes;
 
+    [SerializeField]
+    private Image imageSuperCourage;
+
+    [SerializeField]
+    private Image imageSuperSpeed;
+
+    [SerializeField]
+    private Image imageSuperIntelligence;
+
+    [SerializeField]
+    private Sprite[] spriteSuperCourage;
+
+    [SerializeField]
+    private Sprite[] spriteSuperSpeed;
+
+    [SerializeField]
+    private Sprite[] spriteSuperIntelligence;
+
+
+    [SerializeField]
+    private Image imageAlone;
+
+    [SerializeField]
+    private Image imageSuperHeroe;
+
+    [SerializeField]
+    private Image imageSuperHeroine;
+
+    [SerializeField]
+    private Image imageAnimal;
+
+    [SerializeField]
+    private Sprite[] spriteAlone;
+
+    [SerializeField]
+    private Sprite[] spriteSuperHeroe;
+
+    [SerializeField]
+    private Sprite[] spriteSuperHeroine;
+
+    [SerializeField]
+    private Sprite[] spriteAnimal;
+
+
+
     [Header("Sound")]
     [SerializeField]
     private int indexSoundWrong;
@@ -100,6 +148,7 @@ public class UIManager_MM : MonoBehaviour
         companionCanvas.SetActive(false);
         clothesCanvas.SetActive(false);
         loadingCanvas.SetActive(false);
+        loading1Canvas.SetActive(false);
         clothesSelectedCanvas.SetActive(false);
         companionImage[0].gameObject.SetActive(false);
         companionImage[1].gameObject.SetActive(false);
@@ -125,6 +174,7 @@ public class UIManager_MM : MonoBehaviour
     {
         // Play Sound
         audioManager.PlayClip(0, 0.6f);
+        loading1Canvas.SetActive(true);
         // ****
         mainMenuManager.LoadScene(indexScene);
     }
@@ -229,6 +279,15 @@ public class UIManager_MM : MonoBehaviour
                 textClothes.text = "Choose Your Clothes!";
                 break;
         }
+
+        imageSuperCourage.sprite = spriteSuperCourage[indexLanguage];
+        imageSuperIntelligence.sprite = spriteSuperIntelligence[indexLanguage];
+        imageSuperSpeed.sprite = spriteSuperSpeed[indexLanguage];
+
+        imageAlone.sprite = spriteAlone[indexLanguage];
+        imageAnimal.sprite = spriteAnimal[indexLanguage];
+        imageSuperHeroe.sprite = spriteSuperHeroe[indexLanguage];
+        imageSuperHeroine.sprite = spriteSuperHeroine[indexLanguage];
     }
 
 
